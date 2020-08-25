@@ -1,0 +1,66 @@
+const mongoose = require("mongoose");
+
+require('./user.model')
+
+// -> id
+// -> id_creator
+// -> date
+// -> duration
+// -> title
+// -> description
+// -> image
+// -> location
+// -> [id_asistants]
+
+const eventSchema = new mongoose.Schema(
+  {
+    user: {
+      //campo de relación con referencia al usuario creador del evento
+      type: mongoose.Schema.Types.ObjectId,
+      //referencia a qué modelo usa
+      ref: "User",
+      required: true,
+    },
+    date: {
+        date: {
+            type: date,
+            required: true
+        },
+        hour: {
+            type: number ,
+            required: true
+        }
+    },
+    duration: {
+        type: number,
+        default: 1
+    },
+    title: {
+        type: String,
+        required: true,
+        maxlength: [ 48, "Title is too long"]
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: String,
+    },
+    location: {
+      type: {
+        type: String,
+        default: "Point"
+      },
+      coordinates: [Number]
+    },
+    asisstants : {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: "User"
+    }
+  },
+ );
+
+const Event = mongoose.model("Event", eventSchema);
+
+module.exports = Event;
