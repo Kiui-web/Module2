@@ -2,15 +2,6 @@ const mongoose = require("mongoose");
 
 require('./user.model')
 
-// -> id
-// -> id_creator
-// -> date
-// -> duration
-// -> title
-// -> description
-// -> image
-// -> location
-// -> [id_asistants]
 
 const eventSchema = new mongoose.Schema(
   {
