@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema({
     },
     password: String,
     number: {
-        type: number,
+        type: Number,
         required: [true, "Number is required"],
         trim : true,
         match: [NUMBER_PATTERN, "Number is invalid"]
