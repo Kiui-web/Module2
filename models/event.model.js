@@ -13,11 +13,11 @@ const eventSchema = new mongoose.Schema(
       required: true,
     },
     date: {
-            type: date,
+            type: Date,
             required: true
     },
     duration: {
-        type: number,
+        type: Number,
         default: 1
     },
     title: {

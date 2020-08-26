@@ -11,7 +11,7 @@ mongoose.
   .catch(error => console.log(`An error ocurred trying to connect to the database ${MONGODB_URI}`, error));
 
 process.on('SIGINT', function () {
-  mongoose.connect.close(function () {
+  mongoose.connection.close(function () {
     console.log('Mongoose disconnected on app terminal');
     process.exit(0);
   })
