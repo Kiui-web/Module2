@@ -22,8 +22,6 @@ const app = express();
 
 // Express View engine setup
 
-
-
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.use(logger('dev'));
@@ -33,7 +31,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(session)
 app.use(socialNetwork)
-//app.use(bindUserToViewLocals);
 
 
 app.set('views', path.join(__dirname, 'views'));
@@ -47,7 +44,7 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 // Catch missing routes and forward to error handler
 
 
-const router = require('./configs/routes.js');
+const router = require('./configs/routes');
 app.use('/', router);
 
 app.use((req, res, next) => next(createError(404)));

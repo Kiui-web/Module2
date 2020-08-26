@@ -16,12 +16,21 @@ const transport = nodemailer.createTransport(
 module.exports.sendValidationEmail = (email, activationToken, name) => {
 	transport.sendMail({
 		to: email,
-		from: `Ironcook Register <${user}>`,
-		subject: 'Activate your account here!',
+		from: `Kiui Register <${user}>`,
+		subject: 'Verify your email adress',
 		html: `
-			<h1>Hi ${name}</h1>
-			<p>Click on the button below to activate your account ❤️</p>
+		<div style="margin-left: 5em;">
+			<h2>Verify your email address</h2>
+			<p>Hi ${name}</p>
+			<p>Thanks for signing up to Kiui App.</p>
+			<p>To get access to your account please verify your email address by clicking the link below.</p>
+
+			
+			<p>Click on the button below to activate your account ❤️</.>
 			<a href="${host}/activate/${activationToken}" style="padding: 10px 20px; color: white; background-color: lightblue; border-radius: 5px;">Click here</a>
+			<p>Regards,</br>
+			The Kiui App Team</p>
+		</div>
 		`
 	}, function(error, info){
 		if (error) {
