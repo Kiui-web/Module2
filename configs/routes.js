@@ -7,7 +7,7 @@ const uploads = require('../configs/cloudinary.config')
 
 
 router.get('/login', sessionMiddleware.isNotAuthenticated, userController.login)
-//router.post('/login', sessionMiddleware.isNotAuthenticated, userController.doLogin)
+router.post('/login', sessionMiddleware.isNotAuthenticated, userController.doLogin)
 router.get('/signup', sessionMiddleware.isNotAuthenticated, userController.signup)
 
 router.get('/', userController.index)
