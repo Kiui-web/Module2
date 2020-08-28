@@ -13,6 +13,7 @@ const session = expressSession({
     httpOnly: true,
     maxAge: process.env.SESSION_MAX_AGE || 3600000, //milisegundos
   },
+  //Esto es para guardar la sesión en nuestra base de datos como req.session como un objeto
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
     //Este es el tiempo que queremos guardar las sesiones en nuestro servidor. Habrá que ponerlo alto también. Está en segundos creo...
