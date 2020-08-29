@@ -13,9 +13,10 @@ router.post('/users',  userController.createUser)
 
 router.get('/activate/:token', sessionMiddleware.isNotAuthenticated, userController.activateUser);
 router.get('/event/:access', eventController.go)
-router.post('/event', eventController.go)
+
 
 router.get('/createEvent', eventController.createEvent)
+router.post('/event', eventController.saveEvent)
 
 router.get('/', userController.index)
 

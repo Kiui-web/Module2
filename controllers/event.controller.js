@@ -9,6 +9,12 @@ module.exports.go = (req, res, next) => {
 }
 
 module.exports.createEvent = (req, res, next) => {
-  console.log("Hola evento");
-  res.render('event/createEvent')
+  const dateNow = new Date().toISOString().substr(0, 16);
+  res.render('event/createEvent', {dateNow})
 }
+
+module.exports.saveEvent = (req, res, next) => {
+  console.log('asdf');
+ console.log(req.body);
+}
+
