@@ -15,6 +15,10 @@ const generateRandomToken = () => {
 }
 
 const userSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: [true, "Necesitamos un nombre"]
+    },
     email: {
         type: String,
         required: [true, "Email is required"],

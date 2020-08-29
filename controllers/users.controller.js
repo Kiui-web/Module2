@@ -54,11 +54,12 @@ module.exports.signup = (req, res, next) => {
 }
 
 module.exports.createUser = (req, res, next) => {
-    const user = new User ({
-        ...req.body,
-        avatar: req.file ? req.path.file: undefined
-    });
-
+    console.log("req.body");
+     const user = new User ({
+         ...req.body,
+         avatar: req.file ? req.path.file: undefined
+     });
+    console.log(req.body);
     user.save()
     .then(user => {
         nodemailer.sendValidationEmail(user.email, user.activation.token, user.name);
@@ -67,21 +68,23 @@ module.exports.createUser = (req, res, next) => {
         });
     })
     .catch(error =>{
+        console.log(error);
         //La siguiente linea, el Tweethack sale como mongoose.Error.sendValidationEmail, creo que estaba mal puesta...
-        if (error instanceof nodemailer.Error.sendValidationEmail) {
-            res.render('users/signup', { error: error.errors, user})
-        } else if(error.code === 11000) {
-            res.render('users/signup', { 
-                user,
-                error: {
-                    email: {
-                        message: "El usuario ya existe"
-                    }
-                } 
-            })
-        } else {
-            next(error)
-        }
+         if (error instanceof mongoose.Error.ValidationError) {
+             console.log("Eres tonto");
+             res.render('users/signup', { error: error.errors, user})
+         } else if(error.code === 11000) {
+             res.render('users/signup', { 
+                 user,
+                 error: {
+                     email: {
+                         message: "El usuario ya existe"
+                     }
+                 } 
+             })
+         } else {
+             next(error)
+         }
     })
     .catch(next)
 }
@@ -113,6 +116,3 @@ module.exports.index = (req, res, next) => {
     res.render('index')
 }
 
-module.exports.go = (req, res, next) => {
-    res.render('event/events')
-}
