@@ -7,8 +7,14 @@ const uploads = require('../configs/cloudinary.config')
 
 
 router.get('/login', sessionMiddleware.isNotAuthenticated, userController.login)
-//router.post('/login', sessionMiddleware.isNotAuthenticated, userController.doLogin)
+router.post('/login', sessionMiddleware.isNotAuthenticated, userController.doLogin)
 router.get('/signup', sessionMiddleware.isNotAuthenticated, userController.signup)
+router.post('/users', sessionMiddleware.isNotAuthenticated, userController.createUser)
+
+router.get('/activate/:token', sessionMiddleware.isNotAuthenticated, userController.activateUser);
+router.get('/events', userController.go)
+router.post('/events', userController.go)
+
 
 router.get('/', userController.index)
 
