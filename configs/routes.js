@@ -18,6 +18,8 @@ router.get('/event/:access', eventController.go)
 router.get('/createEvent', eventController.createEvent)
 router.post('/event', eventController.saveEvent)
 
+router.get('/joinevent', eventController.joinEvent)
+
 router.get('/', userController.index)
 
 

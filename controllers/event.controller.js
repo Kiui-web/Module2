@@ -18,3 +18,7 @@ module.exports.saveEvent = (req, res, next) => {
  console.log(req.body);
 }
 
+module.exports.joinEvent = (req, res, next) => {
+  console.log("Entrando en joinevent");
+  res.render('/event/joinevent')
+}
