@@ -12,7 +12,7 @@ router.get('/signup', sessionMiddleware.isNotAuthenticated, userController.signu
 router.post('/users',  userController.createUser)
 
 router.get('/activate/:token', sessionMiddleware.isNotAuthenticated, userController.activateUser);
-router.get('/event/:access', eventController.go)
+router.get('/event/:id', eventController.detailEvent)
 
 
 router.get('/createEvent', eventController.createEvent)

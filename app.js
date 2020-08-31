@@ -42,7 +42,10 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 
 // Catch missing routes and forward to error handler
-
+app.use((req, res, next) => {
+  res.locals.GOOGLE_MAPS_API = process.env.GOOGLE_MAPS_API
+  next();
+})
 
 const router = require('./configs/routes');
 app.use('/', router);
@@ -54,11 +57,11 @@ app.use((error, req, res) => {
   // Set error information, with stack only available in development
   res.locals.message = error.message;
   res.locals.error = req.app.get('env') === 'development' ? error : {};
-
   // render the error page
   res.status(error.status || 500);
   res.render('error');
 });
+
 
 
 module.exports = app;

@@ -8,7 +8,7 @@ module.exports.isAuthenticated = (req, res, next) => {
         res.locals.currentUser = user
         next()
       } else {
-        res.redirect('/')
+        res.redirect('/login')
       }
     })
     .catch(next);
@@ -18,7 +18,7 @@ module.exports.isNotAuthenticated = (req, res, next) => {
   User.findById(req.session.userId)
     .then((user) => {
       if (user) {
-        res.redirect("/");
+        res.redirect("/login");
       } else {
         next();
       }

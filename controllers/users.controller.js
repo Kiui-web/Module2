@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const User = require('../models/user.model')
+const Event = require('../models/event.model')
 const nodemailer = require('../configs/mailer.config')
 const passport = require('passport')
 
@@ -17,7 +18,16 @@ module.exports.doLogin = (req, res, next) => {
                 if (match) {
                     if (user.activation.active) {
                         req.session.userId = user._id
-                        res.redirect('event/events')
+                        if (req.session.event) {
+                            Event.findByIdAndUpdate(req.session.event, {"user" : req.session.userId})
+                                .then(event => {
+                                    const eventID = req.session.event
+                                    res.redirect(`/event/${eventID}`)
+                                })
+                        } else {
+                            res.redirect('event/events')
+                        }
+                        
                     } else {
                         res.render('users/login', {
                             error: {
