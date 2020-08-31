@@ -16,6 +16,7 @@ module.exports.createEvent = (req, res, next) => {
 module.exports.saveEvent = (req, res, next) => {
   console.log('asdf');
  console.log(req.body);
+ res.render('event/events')
 }
 
 module.exports.joinEvent = (req, res, next) => {
