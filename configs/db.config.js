@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const MONGODB_URI = 'mongodb://localhost/Module2'
+const MONGODB_URI = 'mongodb://localhost/kiui-app'
 
 mongoose.
   connect(MONGODB_URI, { 
