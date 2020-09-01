@@ -9,8 +9,7 @@ const eventSchema = new mongoose.Schema(
       //campo de relación con referencia al usuario creador del evento
       type: mongoose.Schema.Types.ObjectId,
       //referencia a qué modelo usa
-      ref: "User",
-      required: true,
+      ref: "User"
     },
     date: {
             type: Date,

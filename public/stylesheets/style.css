@@ -36,7 +36,126 @@ body,html {
   #pac-input:focus {
     border-color: #4d90fe;
   }
-@media (max-width: 1050px ){
+  footer {
+    position: relative;
+    bottom: 1em;
+    right: 0;
+    left: 0;
+    font-size: 1.4rem;
+  }
+
+  .logo-index {
+    width: 10rem;
+    height: auto;
+    margin: 30px 40px;
+  }
+  
+  .title-index {
+    font-size: 7rem;
+    font-weight: bold;
+  }
+  .d-index {
+    font-size: 2rem;
+    margin: 10rem 1rem 2rem;
+    font-weight: bold;
+  }
+
+  .h1 {
+    font-size: 3.2rem;
+  }
+  
+  .btn-create {
+    background-color: #912180;
+    padding: 30px 40px;
+    border: 1px solid white;
+    color: white;
+    font-size: 2rem;
+    border-radius: 30px;
+    width: 90%;
+    font-weight: bold;
+  }
+  
+  .explain-index {
+    background-color : #5c2385;
+    padding: 1em 0 1em 3em;
+    margin: 5em 0;
+  }
+  .explain-index-text {
+    margin: 2em auto;
+    color: white;
+    font-size: 3.5rem;
+  }
+  .explain-index-text > i {
+    margin-right: 20px;
+  }
+
+.login {
+  margin: 3em 1em;
+}
+
+.form-group {
+  background-color:#EEE;
+  border-radius: 2px;
+  margin: 2em 1em 0;
+}
+
+.form-group > input{
+  border: 0;
+  border-bottom: 1px solid black;
+  background-color:#EEE;
+  border-radius: 2px;
+  font-size: 2.5rem;
+  padding: .5em 0 .5em 1em;
+}
+.invalid-feedback{
+  font-size: 2.5rem;
+  padding: .2em 0 .2em 1em;
+}
+
+.form-group > label {
+  border:0;
+  font-size: 2.5rem;
+  padding: .5em 0 .2em 1em;
+
+}
+
+.boton {
+  padding: 30px 40px;
+  border: 1px solid white;
+  color: white;
+  font-size: 2rem;
+  border-radius: 30px;
+  width: 90%;
+  font-weight: bold;
+  box-shadow: 1px 1px 1px grey;
+}
+
+.btn-google {
+    display: inline-block;
+    background: white;
+    color: #444;
+    border: thin solid #888;
+}
+
+.stripe-sesion {
+  display: flex;
+  font-size: 2.5em;
+  margin: 1.5em 1em;
+}
+.stripe {
+  width: 50%;
+  border-bottom: 1px solid #888;
+  transform:translateY(-25px);
+}
+.signup {
+  font-size: 2rem;
+}
+.body {
+  min-height: 95vh;
+}
+
+
+@media (max-width: 769px ){
 
 .logo-index {
   width: 10rem;
@@ -56,7 +175,7 @@ body,html {
 
 .btn-create {
   background-color: #912180;
-  padding: 15px 40px;
+  padding: 30px 40px;
   border: 1px solid white;
   color: white;
   font-size: 2rem;
@@ -64,4 +183,23 @@ body,html {
   width: 90%;
   font-weight: bold;
 }
+
+.explain-index {
+  background-color : #5c2385;
+  padding: 1em 0 1em 3em;
+  margin: 5em 0;
 }
+.explain-index-text {
+  margin: 2em auto;
+  color: white;
+  font-size: 3.5rem;
+}
+.explain-index-text > i {
+  margin-right: 20px;
+}
+
+.login {
+  margin: 3em 1em;
+}
+}
+

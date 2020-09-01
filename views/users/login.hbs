@@ -1,13 +1,40 @@
-<form action="/login" method="POST">
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input name="email" type="text" class="form-control" id="email"
-      placeholder="Enter email" value="{{ user.email }}">
+ <div class="login">
+  <div class="text-center">
+    <img src="./images/Logo_Morado.png" alt="kiui-logo" class="logo-index">
+    <h1 class="h1 mb-5 mt-5">Inicia sesión en Kiui</h1>
   </div>
+  <form action="/login" method="POST">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input name="email" type="text" class="form-control {{#if error.email }}is-invalid{{/if}}" id="email"
+        value="{{ user.email }}">
 
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input name="password" type="password" class="form-control" id="password"
-      placeholder="Enter password" value="{{ user.password }}">
-    <button type="submit" class="btn btn-success">Enviar</button>
-  </div>
+      {{#if error.email}}
+        <div class="invalid-feedback">
+          {{error.email.message}}
+        </div>
+      {{/if}}
+    </div>
+    <div class="form-group mb-5">
+      <label for="password">Contraseña</label>
+      <input name="password" type="password" class="form-control {{#if error.password }}is-invalid{{/if}}" id="password">
+
+        {{#if error.password}}
+          <div class="invalid-feedback">
+            {{error.password.message}}
+          </div>
+      {{/if}}
+    </div>
+    <div class="text-center">
+       <button type="submit" class="boton btn-create mt-5">Inicia sesión</button>
+       <div class="stripe-sesion">
+         <div class="stripe"></div>
+         <div class="mr-5 ml-5">o</div>
+         <div class="stripe"></div>
+       </div>
+       <a href="auth/google/callback" class="boton btn-google mt-3"><i class="fa fa-google mr-4"></i>Iniciar sesión con Google</a>
+       <p class="mt-5 mb-5 signup">¿No tienes una cuenta?  <a href="/signup">Regístrate</a></p>
+    </div>
+    
+  </form>
+ </div>
