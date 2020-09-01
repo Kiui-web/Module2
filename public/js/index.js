@@ -1,3 +1,29 @@
+const mailContainer = document.querySelector('.mail-container');
+const shownMailContainer = 'container mail-container shown-container';
+const hiddenMailContainer = 'container mail-container hidden-container';
+const socialMediaContainer = document.querySelector('.socialMedia-container');
+const shownSocialMediaContainer = 'container socialMedia-container shown-container';
+const hiddenSocialMediaContainer = 'container socialMedia-container hidden-container';
+const phoneContainer = document.querySelector('.phone-container');
+const shownPhoneContainer = 'container phone-container shown-container';
+const hiddenPhoneContainer = 'container phone-container hidden-container';
+const authenticationMethod1 = document.getElementById('method1');
+const authenticationMethod2 = document.getElementById('method2');
+const authenticationMethod3 = document.getElementById('method3');
+const mailField = document.getElementById('mail');
+const passwordField = document.getElementById('password');
+const phoneNumberField = document.getElementById('phoneNumber');
+const codeField = document.getElementById('code');
+const labels = document.getElementsByTagName('label');
+const signInWithMail = document.getElementById('signInWithMail');
+const signInWithPhoneButton = document.getElementById('signInWithPhone');
+const getCodeButton = document.getElementById('getCode');
+const signUp = document.getElementById('signUp');
+const failureModal = document.querySelector('.failure');
+const signInWithGoogleButton = document.getElementById('signInWithGoogle');
+const signInWithTwitterButton = document.getElementById('signInWithTwitter');
+const signInWithFacebookButton = document.getElementById('signInWithFacebook');
+
 function initMap() {
 
   // if (navigator.geolocation) {
@@ -121,4 +147,33 @@ function initMap() {
 
 
 
-  
+
+ window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('sign-in-button', {
+   'size': 'invisible',
+   'callback': function(response) {
+     // reCAPTCHA solved, allow signInWithPhoneNumber.
+     onSignInSubmit();
+   }
+ });
+   // Turn off phone auth app verification.
+ auth.settings.appVerificationDisabledForTesting = true;
+
+ var phoneNumber = "+34616790551";
+ var testVerificationCode = "123456";
+
+ // This will render a fake reCAPTCHA as appVerificationDisabledForTesting is true.
+ // This will resolve after rendering without app verification.
+ var appVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+ // signInWithPhoneNumber will call appVerifier.verify() which will resolve with a fake
+ // reCAPTCHA response.
+ auth.signInWithPhoneNumber(phoneNumber, appVerifier)
+     .then(function (confirmationResult) {
+       // confirmationResult can resolve with the whitelisted testVerificationCode above.
+       return confirmationResult.confirm(testVerificationCode)
+     }).catch(function (error) {
+       // Error; SMS not sent
+       // ...
+     });
+
+// Firebase App (the core Firebase SDK) is always required and
+// must be listed before other Firebase SDKs
