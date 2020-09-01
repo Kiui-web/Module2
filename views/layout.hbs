@@ -8,23 +8,30 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel='stylesheet' href='/stylesheets/style.css' />
-    
+
 </head>
 
 <body>
 
   <div class="body">
-  
 
-  {{{body}}}
+
+    {{{body}}}
 
   </div>
 
   <footer class="text-center">2020 @Kiui App</footer>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-   <script defer
-  src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_MAPS_API}}&callback=initMap&libraries=places&v=weekly">
-</script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-analytics.js"></script>
+  <script defer src="./js/init-firebase.js"></script>
+  <script defer
+    src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_MAPS_API}}&callback=initMap&libraries=places&v=weekly">
+    </script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="/js/index.js"></script>
 
