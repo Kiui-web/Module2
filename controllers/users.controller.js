@@ -1,7 +1,36 @@
 const mongoose = require('mongoose')
 const User = require('../models/user.model')
+const Event = require('../models/event.model')
 const nodemailer = require('../configs/mailer.config')
 const passport = require('passport')
+
+
+module.exports.doSocialLoginGoogle = (req, res, next) => {
+    const passportController = passport.authenticate("google", {
+        scope: [
+          "https://www.googleapis.com/auth/userinfo.profile",
+          "https://www.googleapis.com/auth/userinfo",
+          'https://www.googleapis.com/auth/admin.directory.device.mobile.readonly'
+        ]
+      }, (error, user) => {
+        if (error) {
+          next(error);
+        } else {
+          req.session.userId = user._id;
+          if (req.session.event) {
+            Event.findByIdAndUpdate(req.session.event, {"user" : req.session.userId})
+                .then(event => {
+                    const eventID = req.session.event
+                    res.redirect(`/event/${eventID}`)
+                })
+            } else {
+                res.redirect('events')
+            }
+        }
+      })
+      
+      passportController(req, res, next);
+    }
 
 module.exports.login = (req, res, next) => {
     res.render('users/login')
@@ -17,7 +46,16 @@ module.exports.doLogin = (req, res, next) => {
                 if (match) {
                     if (user.activation.active) {
                         req.session.userId = user._id
-                        res.redirect('event/events')
+                        if (req.session.event) {
+                            Event.findByIdAndUpdate(req.session.event, {"user" : req.session.userId})
+                                .then(event => {
+                                    const eventID = req.session.event
+                                    res.redirect(`/event/${eventID}`)
+                                })
+                        } else {
+                            res.redirect('events')
+                        }
+                        
                     } else {
                         res.render('users/login', {
                             error: {
@@ -30,8 +68,8 @@ module.exports.doLogin = (req, res, next) => {
                 } else {
                     res.render('users/login', {
                         error: {
-                            email: {
-                                message: 'Usuario no encontrado'
+                            password: {
+                                message: 'Email o contraseña incorrecta'
                             }
                         }
                     })
@@ -40,8 +78,8 @@ module.exports.doLogin = (req, res, next) => {
             } else {
                 res.render('users/login', {
                     error: {
-                        email: {
-                            message: "Usuario no encontrado"
+                        password: {
+                            message: "Email o contraseña incorrecta"
                         }
                     }
                 })

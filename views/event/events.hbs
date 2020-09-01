@@ -1,1 +1,96 @@
-<h1>Evento creado</h1>
+<h1>Todos los eventos</h1>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha256-pTxD+DSzIwmwhOqTFN+DB+nHjO4iAsbgfyFq5K5bcE0=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
+<div class="container">
+<div class="row">
+    <div class="col-12">
+        <div id="events" class="event-list owl-carousel owl-loaded owl-drag">
+            <div class="owl-stage-outer">
+                <div class="owl-stage">
+                    {{!-- Comienzo bucle --}}
+                    {{#each eventPresent}}
+
+                    <div class="owl-item cloned" style="width: 374.5px;">
+                        <div class="event-item">
+                            <div class="event-schedule">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="feather feather-calendar event-icon">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <span class="event-day">{{this.day}}</span>
+                                <div class="event-month-time">
+                                    <span>{{this.month}}</span>
+                                    <span>{{this.hour}}</span>
+                                </div>
+                            </div>
+                            <a href="#" class="event-title">{{this.title}}</a>
+                            <p class="event-content">{{this.description}}</p>
+                            <ul class="event-participants">
+                                {{#each this.asisstants}}
+                                    <li class="event-user" data-toggle="tooltip" data-placement="top" data-skin-class="tooltip-base" data-html="true" title="" data-original-title="<b>Tommy C</b>">
+                                        <img class="event-user-pic" src="{{this.image}}" alt="Profile Pic" />
+                                    </li>
+                                {{/each}}
+                                <li class="event-user bg-soft-info" data-original-title="" title="">
+                                    <span class="event-user-inital text-dark">{{this.asisstants.length}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="owl-nav">
+                <button type="button" role="presentation" class="owl-prev">
+                    <div class="owl-nav-wrapper bg-soft-primary">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="feather feather-chevron-left text-primary">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </div>
+                </button>
+                <button type="button" role="presentation" class="owl-next">
+                    <div class="owl-nav-wrapper bg-soft-primary">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="feather feather-chevron-right text-primary">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </div>
+                </button>
+            </div>
+            <div class="owl-dots disabled"></div>
+        </div>
+    </div>
+</div>
+</div>

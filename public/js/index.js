@@ -1,7 +1,38 @@
 function initMap() {
+
+  // if (navigator.geolocation) {
+  //   navigator.geolocation.getCurrentPosition(function (position) {
+  //     const user_location = {
+  //       lat: position.coords.latitude,
+  //       lng: position.coords.longitude
+  //     };
+
+  //     console.log(position.coords.latitude);
+ 
+  //     // Center map with user location
+  //     map.setCenter(user_location);
+ 
+  //     // Add a marker for your user location
+  //     const ironhackBCNMarker = new google.maps.Marker({
+  //       position: {
+  //         lat: user_location.lat,
+  //         lng: user_location.lng
+  //       },
+  //       map: map,
+  //       title: "You are here."
+  //     });
+ 
+  //   }, function () {
+  //     console.log('Error in the geolocation service.');
+  //   });
+  // } else {
+  //   console.log('Browser does not support geolocation.');
+  // }
     console.log(navigator.geolocation);
     const map = new google.maps.Map(document.getElementById("map"), {
       center: {
+        // lat: -95.712891,
+        // lng: 37.09024
         lat:40.4378698, 
         lng: -3.8196207
       },
@@ -45,7 +76,8 @@ function initMap() {
       }
   
       marker.setPosition(place.geometry.location);
-      console.log(place.geometry.location);
+      const geocode = new google.maps.Geocoder()
+      geocodeAddress(geocode);
       marker.setVisible(true);
       let address = "";
   
@@ -67,26 +99,26 @@ function initMap() {
       infowindowContent.children["place-name"].textContent = place.name;
       infowindowContent.children["place-address"].textContent = address;
       infowindow.open(map, marker);
-    }); // Sets a listener on a radio button to change the filter type on Places
-    // Autocomplete.
-  
-    function setupClickListener(id, types) {
-      const radioButton = document.getElementById(id);
-      radioButton.addEventListener("click", () => {
-        autocomplete.setTypes(types);
-      });
-    }
-  
-    setupClickListener("changetype-all", []);
-    setupClickListener("changetype-address", ["address"]);
-    setupClickListener("changetype-establishment", ["establishment"]);
-    setupClickListener("changetype-geocode", ["geocode"]);
-    document
-      .getElementById("use-strict-bounds")
-      .addEventListener("click", function() {
-        console.log("Checkbox clicked! New state=" + this.checked);
-        autocomplete.setOptions({
-          strictBounds: this.checked
-        });
-      });
+    });
+    const geocoder = new google.maps.Geocoder();
+
   }
+
+  function geocodeAddress(geocoder) {
+    const address = document.getElementById("pac-input").value;
+    geocoder.geocode({ address: address }, (results, status) => {
+      if (status === "OK") {
+        const location = results[0].geometry.location
+        const latitud = location.lat()
+        const longitud = location.lng()
+        document.getElementById('latitude').value = latitud
+        document.getElementById('longitud').value = longitud
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+}
+
+
+
+  
