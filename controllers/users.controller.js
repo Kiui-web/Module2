@@ -154,3 +154,18 @@ module.exports.index = (req, res, next) => {
     res.render('index')
 }
 
+module.exports.logout = (req, res, next) => {
+    req.session.destroy()
+    res.redirect('/')
+}
+
+module.exports.profile = (req, res, next) => {
+    User.findById(req.session.userId)
+        .then (user => {
+            if (user) {
+                res.render('users/profile', {user})
+            } 
+        })
+        .catch(e => next(e))
+}
+

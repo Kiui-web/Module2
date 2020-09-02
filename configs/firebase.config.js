@@ -5,7 +5,14 @@ const codeInput = document.getElementById('code')
  
  // Your web app's Firebase configuration
   var firebaseConfig = {
-    //AQUI PONER CLAVES FIREBASE
+    apiKey: "AIzaSyBM3T5U6HHsoVRek7JtwxSzlgyof247xgg",
+    authDomain: "protean-set-284407.firebaseapp.com",
+    databaseURL: "https://protean-set-284407.firebaseio.com",
+    projectId: "protean-set-284407",
+    storageBucket: "protean-set-284407.appspot.com",
+    messagingSenderId: "733522398368",
+    appId: "1:733522398368:web:b80cd519491e23501b8dc5",
+    measurementId: "G-NZMC55PR6E"
   };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -20,14 +27,14 @@ function submitPhoneNumberAuth() {
   const phoneNumber = phoneNumberInput.value;
   var appVerifier = window.recaptchaVerifier;
   firebase
-    .auth()
-    .signInWithPhoneNumber(phoneNumber, appVerifier)
-    .then(function(confirmationResult) {
-        window.confirmationResult = confirmationResult;
-    })
-    .catch(function(error) {
-        console.log(error);
-    });
+  .auth()
+  .signInWithPhoneNumber(phoneNumber, appVerifier)
+  .then(function(confirmationResult) {
+      window.confirmationResult = confirmationResult;
+  })
+  .catch(function(error) {
+      console.log(error);
+  });
 }
 
 // This function runs when the 'confirm-code' button is clicked
@@ -38,15 +45,14 @@ function submitPhoneNumberAuthCode() {
   // var code = document.getElementById("code").value;
   var code = codeInput.value;
   confirmationResult
-    .confirm(code)
-    .then(result => {
-        var user = result.user;
-        console.log(result);
-        //window.location.replace("http://localhost:3000/events");
-    })
-    .catch(function(error) {
-        console.log(error);
-    });
+  .confirm(code)
+  .then(function(result) {
+      var user = result.user;
+      console.log(user);
+  })
+  .catch(function(error) {
+      console.log(error);
+  });
 }
 
 
@@ -63,19 +69,3 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 signInButton.addEventListener('click', submitPhoneNumberAuth)
 confirmCode.addEventListener('click', submitPhoneNumberAuthCode)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

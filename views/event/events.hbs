@@ -1,7 +1,5 @@
 <h1>Todos los eventos</h1>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha256-pTxD+DSzIwmwhOqTFN+DB+nHjO4iAsbgfyFq5K5bcE0=" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
 <div class="container">
 <div class="row">
     <div class="col-12">
@@ -36,7 +34,7 @@
                                     <span>{{this.hour}}</span>
                                 </div>
                             </div>
-                            <a href="#" class="event-title">{{this.title}}</a>
+                            <a href="/event/{{this._id}}" class="event-title">{{this.title}}</a>
                             <p class="event-content">{{this.description}}</p>
                             <ul class="event-participants">
                                 {{#each this.asisstants}}
@@ -48,6 +46,7 @@
                                     <span class="event-user-inital text-dark">{{this.asisstants.length}}</span>
                                 </li>
                             </ul>
+                            <a href="/share/{{this._id}}"><i class="fa fa-share-square" aria-hidden="true"></i></a>
                         </div>
                     </div>
                     {{/each}}
@@ -94,3 +93,39 @@
     </div>
 </div>
 </div>
+
+<script>
+    (function($) {
+    'use strict';
+    $(function () {
+        //Event carousel
+        $("#events").owlCarousel({
+            loop:true,
+            margin:0,
+            autoPlay: 3000,
+            responsive:{
+                0:{
+                    items:1
+                },
+                768:{
+                    items:2
+                },
+                979:{
+                    items:3
+                },
+                1199:{
+                    items:4
+                }
+            },
+            singleItem : false,
+            dots: false,
+            nav: true,
+            navText : ["",""]
+        });
+        $(".btn-event-show").collapse();
+        //Events: Tooltip
+        $('.event-user').tooltip({ boundary: 'window' });
+        feather.replace();
+    });
+}); 
+</script>
