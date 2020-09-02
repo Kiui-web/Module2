@@ -3,6 +3,104 @@ const User = require('../models/user.model')
 const Event = require('../models/event.model')
 const nodemailer = require('../configs/mailer.config')
 const passport = require('passport')
+const admin = require('firebase-admin')
+const serviceAccount = require("../public/js/init-firebase.json");
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://protean-set-284407.firebaseio.com"
+});
+
+
+
+// admin.initializeApp({
+//     credential: admin.credential.cert({
+//       type: process.env.FIREBASE_TYPE,
+//       project_id: process.env.FIREBASE_PROJECT_ID,
+//       private_key_id: process.env.FIREBASE_KEY_ID,
+//       private_key: process.env.FIREBASE_KEY,
+//       client_email: process.env.FIREBASE_CLIENT_EMAIL,
+//       client_id: process.env.FIREBASE_CLIENT_ID,
+//       auth_uri: process.env.FIREBASE_AUTH_URI,
+//       token_uri: process.env.FIREBASE_TOKEN_URI,
+//       auth_provider_x509_cert_url: process.env.FIREBASE_AUTH_PROVIDER,
+//       client_x509_cert_url: process.env.FIREBASE_CLIENT_X509,
+//     }),
+//     // apiKey: config.firebase.apiKey,
+//     // authDomain: config.firebase.authDomain,
+//     databaseURL: process.env.FIREBASE_DATABASEURL,
+//     //storageBucket: config.firebase.storageBucket,
+//   });
+//   //   credential: admin.credential.cert(serviceAccount),
+//   //   databaseURL: "https://protean-set-284407.firebaseio.com"
+
+
+
+// This function runs when the 'sign-in-button' is clicked
+// // Takes the value from the 'phoneNumber' input and sends SMS to that phone number
+// function submitPhoneNumberAuth() {
+    
+//   const phoneNumber = phoneNumberInput.value;
+//   const appVerifier = window.recaptchaVerifier;
+//   admin
+//     .auth()
+//     .signInWithPhoneNumber(phoneNumber, appVerifier)
+//     .then(function(confirmationResult) {
+//         window.confirmationResult = confirmationResult;
+//     })
+//     .catch(function(error) {
+//         console.log(error);
+//     });
+// }
+
+
+module.exports.firebase = (req, res, next) => {
+    const phoneNumber = req.body.phoneNumber;
+    console.log(phoneNumber);
+    global.recaptchaVerifier = new admin.auth.RecaptchaVerifier('recaptcha-container');
+    const appVerifier = global.recaptchaVerifier;
+  admin
+    .auth()
+    .signInWithPhoneNumber(phoneNumber, appVerifier)
+    .then(function(confirmationResult) {
+        global.confirmationResult = confirmationResult;
+        console.log('heheheheheehehe');
+    })
+    .catch(function(error) {
+        console.log(error);
+    });
+}
+
+module.exports.firebaseCode = (req, res, next) => {
+    const code = req.body.code;
+    confirmationResult
+      .confirm(code)
+      .then(result => {
+          var user = result.user;
+          console.log(result);
+      })
+      .catch(function(error) {
+          console.log(error);
+      });
+}
+
+
+
+
+// function submitPhoneNumberAuthCode() {
+//   // We are using the test code we created before
+//   // var code = document.getElementById("code").value;
+//   const code = codeInput.value;
+//   confirmationResult
+//     .confirm(code)
+//     .then(result => {
+//         var user = result.user;
+//         console.log(result);
+//         //window.location.replace("http://localhost:3000/events");
+//     })
+//     .catch(function(error) {
+//         console.log(error);
+//     });
+// }
 
 
 module.exports.doSocialLoginGoogle = (req, res, next) => {
@@ -168,4 +266,8 @@ module.exports.profile = (req, res, next) => {
         })
         .catch(e => next(e))
 }
+
+
+
+
 

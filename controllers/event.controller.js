@@ -93,6 +93,8 @@ module.exports.share = (req, res, next) => {
 
           Asistentes:
 
+
+          Creado con Kiui
         `
 
 

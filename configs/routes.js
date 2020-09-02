@@ -23,6 +23,8 @@ router.post('/event', eventController.saveEvent)
 router.get('/joinevent', eventController.joinEvent)
 router.get('/share/:id', eventController.share)
 
+router.post('/firebase', userController.firebase)
+router.get('/firebase-code', userController.firebaseCode)
 
 
 

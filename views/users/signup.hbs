@@ -36,21 +36,29 @@
 
 
 
+  <form action="/firebase" method="POST">
+    <input type="tel" id="phoneNumber" name="phoneNumber" />
+    <button type="submit" id="sign-in-button">
+          SIGN IN WITH PHONE
+      </button>
+  </form>
+  <form action="/firebase-code" method="POST">
+    <input type="text" id="code" name="code"/>
+    <button type="submit" id="confirm-code">
+          ENTER CODE
+        </button>
+  </form>
 
 
 
 
     <!-- Add two inputs for "phoneNumber" and "code" -->
-        <input type="tel" id="phoneNumber" />
-        <input type="text" id="code" />
+        
+        
     
         <!-- Add two buttons to submit the inputs -->
-        <button id="sign-in-button">
-          SIGN IN WITH PHONE
-        </button>
-        <button id="confirm-code">
-          ENTER CODE
-        </button>
+        
+        
     
         <!-- Add a container for reCaptcha -->
         <div id="recaptcha-container"></div>
