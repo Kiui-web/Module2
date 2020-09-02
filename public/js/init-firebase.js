@@ -5,14 +5,7 @@ const codeInput = document.getElementById('code')
  
  // Your web app's Firebase configuration
   var firebaseConfig = {
-    apiKey: "AIzaSyBM3T5U6HHsoVRek7JtwxSzlgyof247xgg",
-    authDomain: "protean-set-284407.firebaseapp.com",
-    databaseURL: "https://protean-set-284407.firebaseio.com",
-    projectId: "protean-set-284407",
-    storageBucket: "protean-set-284407.appspot.com",
-    messagingSenderId: "733522398368",
-    appId: "1:733522398368:web:b80cd519491e23501b8dc5",
-    measurementId: "G-NZMC55PR6E"
+    //AQUI PONER CLAVES FIREBASE
   };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);

@@ -2,6 +2,9 @@ const mongoose = require('mongoose')
 const Event = require('../models/event.model')
 const nodemailer = require('../configs/mailer.config')
 const passport = require('passport')
+const shortUrl = require('node-url-shortener');
+
+
 
 
 
@@ -53,13 +56,66 @@ module.exports.saveEvent = (req, res, next) => {
 }
 
 
+module.exports.share = (req, res, next) => {
+ Event.findById(req.params.id)
+    .populate('user')
+    .populate('asisstants')
+    .then(event => {
+        const year = event.date.toISOString().slice(0, 4)
+        const hour = event.date.toISOString().slice(11, 16)
+        const day = event.date.toISOString().slice(08, 10)
+        const month = event.date.toISOString().slice(05, 07)
+        const mNames = monthName(month)
+        const description = event.description
+        const title = event.title
+        const duration = event.duration
+        const latitud = event.location.coordinates[0]
+        const longitud = event.location.coordinates[1]
+        const googleMaps = `https://maps.google.com/?q=${latitud},${longitud}&z=17&t=m`
+
+        shortUrl.short(googleMaps, function(err, url){
+          googleMaps = url
+        });
+
+        const text = `
+          *${title}*
+
+          ${description}
+
+          *Apuntate aquí* 
+          
+          *Día: *${day} de ${mNames} de ${year}
+          *Hora: *${day}
+          *Lugar: *
+          ${googleMaps}
+
+          *Duración * ${duration} horas
+
+          Asistentes:
+
+        `
+
+
+
+
+        const whasapUrl = `https://api.whatsapp.com/send?phone=${user.number}&text=`
+
+
+
+
+
+    })
+    .catch(next)
+ }
 
 
 module.exports.eventsAll = (req, res, next) => {
   Event.find({ "user" : req.session.userId})
       .populate('user')
+      .populate('asisstants')
       .then(events => {
         if (events) {
+        
           const dateNow = new Date().toISOString().substr(0, 16)
             events = events.map(event => {
             const hour = event.date.toISOString().slice(11, 16)
@@ -67,6 +123,7 @@ module.exports.eventsAll = (req, res, next) => {
             const month = event.date.toISOString().slice(05, 07)
             const mNames = monthName(month)
             return {
+              "_id": event._id,
               "user" : event.user,
               "date" : event.date,
               "duration" : event.duration,
@@ -88,8 +145,8 @@ module.exports.eventsAll = (req, res, next) => {
             return event.date.toISOString() >= dateNow
           })
 
-
-          res.render('event/events', {eventPast, eventPresent})
+          
+          res.render('event/events', {eventPast, eventPresent, user: req.session.userId})
         }
       })
       .catch(next);

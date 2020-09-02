@@ -44,6 +44,27 @@ body,html {
     font-size: 1.4rem;
   }
 
+  .logo-nav {
+    width: 7em;
+  }
+
+  .navbar {
+    border-bottom: 1px solid #EEE;
+    box-shadow: 5px 5px 5px #EEE;
+  }
+
+  #nav-show {
+    /* display: none; */
+    border: 1px solid #888;
+    box-shadow: 1px 1px 1px #888;
+    padding: .8em .4em;
+    text-align: initial;
+  }
+
+  .a-button {
+    color:#888;
+  }
+
   .logo-index {
     width: 10rem;
     height: auto;
@@ -156,6 +177,7 @@ body,html {
 
 .event-list .event-item {
   padding: 1rem 1.9rem;
+  height: 95%;
   margin: 0 0.9375rem 1.875rem 0.9375rem;
   background-color: #ffffff;
   border-radius: 8px;
@@ -241,6 +263,20 @@ body,html {
   line-height: 100%;
 }
 
+.profile-text {
+  font-size: 2.5em;
+  margin: 8em 3em;
+}
+
+.img-profile {
+  transform: translateY(30%);
+}
+
+.profile-bg {
+  background: rgb(92,35,133);
+  background: linear-gradient(0deg, rgba(92,35,133,1) 0%, rgba(145,33,128,1) 61%, rgba(194,31,125,1) 93%);
+}
+
 .event-list .event-item .event-participants {
   display: flex !important;
 }
@@ -307,6 +343,9 @@ justify-content: center;
 color: #ffffff;
 width: 20px;
 height: 20px;
+}
+.owl-stage {
+  display: flex;
 }
 
 .owl-next {

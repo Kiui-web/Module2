@@ -2,18 +2,19 @@
   <div class="container d-flex align-items-center">
     <div>
       <a class="navbar-brand" href="/">
-        <img src="./images/kiui-logo.png" alt="kiui-logo" class="logo">
+        <img src="./images/Logo_Morado.png" alt="kiui-logo" class="logo-nav">
       </a>
     </div>
     <div class="text-right icons-menu">
-      <a href="/home"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
-      <a class="ml-2" href="/createdRecipe"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a>
-      <a class="ml-2" href="/profile"><img src="{{user.avatar}}" class="rounded-circle" width="auto" height="30px"></a>
-      <a class="ml-2" href="/login">Ini</a>
-        <button type="submit" class="ml-2 btn-without-style">Sign up</button>
-         
+      <a class="ml-2 a-button" href="/createEvent"><i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i></a>
+      <a class="a-button" href="#" onClick="muestra_oculta('nav-show')"><i class="fa fa-arrow-circle-down fa-4x" aria-hidden="true"></i></a>
+        <div id="nav-show">
+          <a class="ml-2" href="/profile"><img src="{{user.avatar}}" class="rounded-circle" width="auto" height="20px">Ver perfil</a>
+          <form action="/logout" method="post">
+            <button type="submit" class="ml-2 btn-without-style">Cerrar sesión</button>
+          </form>
+        </div>
     </div>
-  </div>
-  <div>
+   
   </div>
 </nav>

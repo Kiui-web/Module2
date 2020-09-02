@@ -34,7 +34,7 @@
                                     <span>{{this.hour}}</span>
                                 </div>
                             </div>
-                            <a href="#" class="event-title">{{this.title}}</a>
+                            <a href="/event/{{this._id}}" class="event-title">{{this.title}}</a>
                             <p class="event-content">{{this.description}}</p>
                             <ul class="event-participants">
                                 {{#each this.asisstants}}
@@ -46,6 +46,7 @@
                                     <span class="event-user-inital text-dark">{{this.asisstants.length}}</span>
                                 </li>
                             </ul>
+                            <a href="/share/{{this._id}}"><i class="fa fa-share-square" aria-hidden="true"></i></a>
                         </div>
                     </div>
                     {{/each}}
