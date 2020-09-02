@@ -8,7 +8,7 @@ const uploads = require('../configs/cloudinary.config')
 router.get('/auth/google/callback', sessionMiddleware.isNotAuthenticated, userController.doSocialLoginGoogle);
 router.get('/login', userController.login)
 router.post('/login', userController.doLogin)
-router.get('/signup', sessionMiddleware.isNotAuthenticated, userController.signup)
+router.get('/signup', userController.signup)
 router.post('/users',  userController.createUser)
 router.get('/activate/:token', sessionMiddleware.isNotAuthenticated, userController.activateUser);
 

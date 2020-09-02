@@ -27,14 +27,14 @@ function submitPhoneNumberAuth() {
   const phoneNumber = phoneNumberInput.value;
   var appVerifier = window.recaptchaVerifier;
   firebase
-    .auth()
-    .signInWithPhoneNumber(phoneNumber, appVerifier)
-    .then(function(confirmationResult) {
-        window.confirmationResult = confirmationResult;
-    })
-    .catch(function(error) {
-        console.log(error);
-    });
+  .auth()
+  .signInWithPhoneNumber(phoneNumber, appVerifier)
+  .then(function(confirmationResult) {
+      window.confirmationResult = confirmationResult;
+  })
+  .catch(function(error) {
+      console.log(error);
+  });
 }
 
 // This function runs when the 'confirm-code' button is clicked
@@ -45,15 +45,14 @@ function submitPhoneNumberAuthCode() {
   // var code = document.getElementById("code").value;
   var code = codeInput.value;
   confirmationResult
-    .confirm(code)
-    .then(result => {
-        var user = result.user;
-        console.log(result);
-        //window.location.replace("http://localhost:3000/events");
-    })
-    .catch(function(error) {
-        console.log(error);
-    });
+  .confirm(code)
+  .then(function(result) {
+      var user = result.user;
+      console.log(user);
+  })
+  .catch(function(error) {
+      console.log(error);
+  });
 }
 
 
@@ -70,19 +69,3 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 signInButton.addEventListener('click', submitPhoneNumberAuth)
 confirmCode.addEventListener('click', submitPhoneNumberAuthCode)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
