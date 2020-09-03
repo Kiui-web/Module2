@@ -6,10 +6,6 @@ const shortUrl = require('node-url-shortener');
 const firebase = require('firebase')
 
 
-
-
-
-
 module.exports.detailEvent = (req, res, next) => {
   Event.findById (req.params.id)
   .populate('user')

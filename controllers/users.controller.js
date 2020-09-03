@@ -124,6 +124,7 @@ module.exports.createUser = (req, res, next) => {
     user.save()
     .then(user => {
         nodemailer.sendValidationEmail(user.email, user.activation.token, user.name);
+        console.log('holaholahola');
         res.render('users/login', {
             message: 'Comprueba tu correo electrónico para confirmar la cuenta'
         });

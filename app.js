@@ -11,11 +11,11 @@ const mongoose = require('mongoose');
 
 
 
+
 // Set up the database
 require('./configs/db.config');
 require('./configs/hbs.config');
 const session = require('./configs/session.config')
-const socialNetwork = require('./configs/socialNetwork.config')
 
 // bind user to view - locals
 
@@ -32,7 +32,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 app.use(session)
-app.use(socialNetwork)
 
 
 app.set('views', path.join(__dirname, 'views'));
