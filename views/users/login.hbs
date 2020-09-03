@@ -1,11 +1,71 @@
- <div class="login">
+  <div class="login">
   <div class="text-center">
     <img src="./images/Logo_Morado.png" alt="kiui-logo" class="logo-index">
     <h1 class="h1 mb-5 mt-5">Inicia sesión en Kiui</h1>
   </div>
   <form action="/login" method="POST">
     <div class="form-group">
-      <label for="email">Email</label>
+      <label for="number">Introduce el número de telefono</label>
+      <input name="number" type="tel" class="form-control {{#if error.number }}is-invalid{{/if}}" id="phoneNumber"
+        value="{{ user.number }}">
+
+      {{#if error.number}}
+        <div class="invalid-feedback">
+          {{error.number.message}}
+        </div>
+      {{/if}}
+    </div>
+    <div style="display: none;" class="form-group mb-5">
+      <label for="code">Introduce el código</label>
+      <input name="code" type="text" class="form-control {{#if error.password }}is-invalid{{/if}}" id="code">
+
+        {{#if error.code}}
+          <div class="invalid-feedback">
+            {{error.code.message}}
+          </div>
+      {{/if}}
+    </div>
+    <div id="inset_form"></div>
+    <div class="text-center">
+       <button type="submit" class="boton btn-create mt-5">Continuar</button>
+    </div>
+    
+  </form>
+ </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ {{!-- <div class="login">
+  <div class="text-center">
+    <img src="./images/Logo_Morado.png" alt="kiui-logo" class="logo-index">
+    <h1 class="h1 mb-5 mt-5">Inicia sesión en Kiui</h1>
+  </div>
+  <form action="/login" method="POST">
+    <div class="form-group">
+      <label for="email">Introduce el número de telefono</label>
       <input name="email" type="text" class="form-control {{#if error.email }}is-invalid{{/if}}" id="email"
         value="{{ user.email }}">
 
@@ -32,9 +92,8 @@
          <div class="mr-5 ml-5">o</div>
          <div class="stripe"></div>
        </div>
-       <a href="auth/google/callback" class="boton btn-google mt-3"><i class="fa fa-google mr-4"></i>Iniciar sesión con Google</a>
        <p class="mt-5 mb-5 signup">¿No tienes una cuenta?  <a href="/signup">Regístrate</a></p>
     </div>
     
   </form>
- </div>
+ </div> --}}

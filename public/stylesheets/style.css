@@ -396,6 +396,96 @@ background: #757575 !important;
   color: #4e73e5 !important;
 }
 
+#wrapper {
+  text-align: center;
+  box-sizing: border-box;
+  color: #333;
+}
+  
+  #wrapper #dialog {
+    border: solid 1px #ccc;
+    margin: 10px auto;
+    padding: 20px 30px;
+    display: inline-block;
+    box-shadow: 0 0 4px #ccc;
+    background-color: #FAF8F8;
+    overflow: hidden;
+    position: relative;
+    max-width: 450px;
+  }
+    
+    #wrapper h3 {
+      margin: 0 0 10px;
+      padding: 0;
+      line-height: 1.25;
+      font-size: 1.5em;
+    }
+    
+    #wrapper span {
+      font-size: 90%;
+    }
+    
+    #wrapper #form {
+      max-width: 300px;
+      margin: 25px auto 0;
+      display: flex;
+    }
+      
+    #wrapper #form input {
+        margin: 0 5px;
+        text-align: center;
+        line-height: 80px;
+        font-size: 50px;
+        border: solid 1px #ccc;
+        box-shadow: 0 0 5px #ccc inset;
+        outline: none;
+        width: 20%;
+        transition: all .2s ease-in-out;
+        border-radius: 3px;
+      }
+        
+      #wrapper #form input:focus {
+          border-color: purple;
+          box-shadow: 0 0 5px purple inset;
+        }
+        
+        #wrapper #form  input::selection {
+          background: transparent;
+        }
+      
+      
+        #wrapper #confirm-code {
+        margin:  30px 0 50px;
+        width: 100%;
+        padding: 6px;
+        background-color: #B85FC6;
+        border: none;
+        text-transform: uppercase;
+      }
+    
+    
+      #wrapper  button .close {
+        border: solid 2px;
+        border-radius: 30px;
+        line-height: 19px;
+        font-size: 120%;
+        width: 22px;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+      }           
+    
+      #wrapper div {
+      position: relative;
+      z-index: 1;
+    }
+    
+    #wrapper img {
+      position: absolute;
+      bottom: -70px;
+      right: -63px;
+    }
+
 
 @media (max-width: 769px ){
 

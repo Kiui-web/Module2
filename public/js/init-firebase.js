@@ -4,8 +4,15 @@ const phoneNumberInput = document.getElementById('phoneNumber')
 const codeInput = document.getElementById('code')
  
  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    //AQUI PONER CLAVES FIREBASE
+  const firebaseConfig = {
+    apiKey: "AIzaSyBM3T5U6HHsoVRek7JtwxSzlgyof247xgg",
+    authDomain: "protean-set-284407.firebaseapp.com",
+    databaseURL: "https://protean-set-284407.firebaseio.com",
+    projectId: "protean-set-284407",
+    storageBucket: "protean-set-284407.appspot.com",
+    messagingSenderId: "733522398368",
+    appId: "1:733522398368:web:b80cd519491e23501b8dc5",
+    measurementId: "G-NZMC55PR6E"
   };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -40,9 +47,11 @@ function submitPhoneNumberAuthCode() {
   confirmationResult
     .confirm(code)
     .then(result => {
-        var user = result.user;
-        console.log(result);
-        //window.location.replace("http://localhost:3000/events");
+        const user = result.user;
+        //console.log(result.user.phoneNumber);
+        $('#inset_form').html(`<form action="/firebase" name="login" method="post"><input type="hidden" name="number" value="${user.phoneNumber} 
+            " /><input type="submit" value="Enviar" name="send" id="send" style="display:none;"></form>`);
+        document.forms['login'].submit();
     })
     .catch(function(error) {
         console.log(error);

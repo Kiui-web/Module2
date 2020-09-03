@@ -3,7 +3,29 @@ const User = require('../models/user.model')
 const Event = require('../models/event.model')
 const nodemailer = require('../configs/mailer.config')
 const passport = require('passport')
+const sessionstorage = require('sessionstorage');
 
+
+
+module.exports.firebase = (req, res, next) => {
+// const code = req.body.code;
+// console.log(code);
+//   global.confirmationResult
+//     .confirm(code)
+//     .then(result => {
+//         var user = result.user;
+//         console.log(result);
+//         //window.location.replace("http://localhost:3000/events");
+//     })
+//     .catch(function(error) {
+//         console.log(error);
+//     });
+console.log(req.body);
+
+console.log('holahola');
+
+
+}
 
 module.exports.doSocialLoginGoogle = (req, res, next) => {
     const passportController = passport.authenticate("google", {
@@ -33,6 +55,7 @@ module.exports.doSocialLoginGoogle = (req, res, next) => {
     }
 
 module.exports.login = (req, res, next) => {
+
     res.render('users/login')
 }
 
