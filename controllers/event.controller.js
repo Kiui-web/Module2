@@ -3,10 +3,7 @@ const Event = require('../models/event.model')
 const nodemailer = require('../configs/mailer.config')
 const passport = require('passport')
 const shortUrl = require('node-url-shortener');
-
-
-
-
+const firebase = require('firebase')
 
 
 module.exports.detailEvent = (req, res, next) => {
@@ -110,6 +107,7 @@ module.exports.share = (req, res, next) => {
 
 
 module.exports.eventsAll = (req, res, next) => {
+
   Event.find({ "user" : req.session.userId})
       .populate('user')
       .populate('asisstants')

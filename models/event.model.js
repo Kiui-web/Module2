@@ -38,10 +38,10 @@ const eventSchema = new mongoose.Schema(
       },
       coordinates: [Number]
     },
-    asisstants : {
-        type: [mongoose.Schema.Types.ObjectId],
+    asisstants : [{
+        type: mongoose.Schema.Types.ObjectId,
         ref: "User"
-    }
+    }]
   },
  );
 

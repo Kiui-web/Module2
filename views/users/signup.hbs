@@ -31,6 +31,9 @@
       {{error.email.message}}
     </div>
     {{/if}} --}}
+<h1>Welcome to My Awesome App</h1>
+<div id="firebaseui-auth-container"></div>
+<div id="loader">Loading...</div>
 
 
 
@@ -39,9 +42,40 @@
 
 
 
+
+
+{{!-- 
+<div id="wrapper">
+  <div id="dialog">
+    <button class="close">×</button>
+    <h3>Por favor introduce los 6 digitos de verificación que has recibido por SMS:</h3>
+    <div id="form">
+      <input type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+      <input type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+      <input type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+      <input type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+      <input type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+      <input type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" /><br>
+      
+    </div>
+      <button id="confirm-code" class="btn btn-primary btn-embossed mt-3">Verificar</button>
+    <div>
+      No ha recibido el codigo?<br />
+      <a href="#">Volver a enviar el código</a><br />
+      <a href="/login">Cambia el número de telefono</a>
+    </div>
+  </div>
+</div> --}}
+
+
+
+
+
+      <div id="inset_form"></div>
 
     <!-- Add two inputs for "phoneNumber" and "code" -->
         <input type="tel" id="phoneNumber" />
+        
         <input type="text" id="code" />
     
         <!-- Add two buttons to submit the inputs -->
@@ -51,7 +85,7 @@
         <button id="confirm-code">
           ENTER CODE
         </button>
-    
+
         <!-- Add a container for reCaptcha -->
         <div id="recaptcha-container"></div>
     

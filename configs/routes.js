@@ -17,11 +17,15 @@ router.post('/logout', sessionMiddleware.isAuthenticated, userController.logout)
 
 
 router.get('/event/:id', eventController.detailEvent)
-router.get('/events',sessionMiddleware.isAuthenticated, eventController.eventsAll)
+router.get('/events', eventController.eventsAll)
 router.get('/createEvent', eventController.createEvent)
 router.post('/event', eventController.saveEvent)
 router.get('/joinevent', eventController.joinEvent)
 router.get('/share/:id', eventController.share)
+
+router.post('/firebase', userController.firebase)
+
+
 
 
 

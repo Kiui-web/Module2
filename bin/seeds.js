@@ -17,8 +17,6 @@ Promise.all([
     for (let i = 0; i < 50; i++) {
         const user = new User({
           name: faker.name.findName(),
-          email: faker.internet.email(),
-          password: '12345',
           avatar: faker.image.avatar(),
           number: faker.phone.phoneNumber('6########'),
           createdAt: faker.date.past(),
@@ -27,7 +25,7 @@ Promise.all([
         user.save()
             .then(user => {
                 userIds.push(user._id);
-                console.log('user created');
+                //console.log(userIds);
 
                 for(let j = 0; j < 10; j++) {
                     const event = new Event({
@@ -35,8 +33,8 @@ Promise.all([
                       date: faker.date.between(faker.date.past(), faker.date.future()),
                       duration: numberDurationRandom (5),
                       title: faker.name.title(),
-                      description: faker.lorem.paragraph(),
                       asisstants: assistantsRandom(userIds),
+                      description: faker.lorem.paragraph(),
                       createdAt: faker.date.past(),
                     });
 
@@ -44,7 +42,7 @@ Promise.all([
 
                     event.save()
                         .then(event => {
-                            console.log('event created');
+                            console.log("event created");
                         })
                         .catch(e => console.log('event error', e))
 
