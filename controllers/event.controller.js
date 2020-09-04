@@ -110,7 +110,7 @@ module.exports.eventsAll = (req, res, next) => {
 
   Event.find({ "user" : req.session.userId})
       .populate('user')
-      .populate('asisstants')
+      .populate('attendants')
       .then(events => {
         if (events) {
         
