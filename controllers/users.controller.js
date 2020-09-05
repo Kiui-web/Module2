@@ -7,53 +7,6 @@ const sessionstorage = require('sessionstorage');
 
 
 
-module.exports.firebase = (req, res, next) => {
-// const code = req.body.code;
-// console.log(code);
-//   global.confirmationResult
-//     .confirm(code)
-//     .then(result => {
-//         var user = result.user;
-//         console.log(result);
-//         //window.location.replace("http://localhost:3000/events");
-//     })
-//     .catch(function(error) {
-//         console.log(error);
-//     });
-console.log(req.body);
-
-console.log('holahola');
-
-
-}
-
-module.exports.doSocialLoginGoogle = (req, res, next) => {
-    const passportController = passport.authenticate("google", {
-        scope: [
-          "https://www.googleapis.com/auth/userinfo.profile",
-          "https://www.googleapis.com/auth/userinfo",
-          'https://www.googleapis.com/auth/admin.directory.device.mobile.readonly'
-        ]
-      }, (error, user) => {
-        if (error) {
-          next(error);
-        } else {
-          req.session.userId = user._id;
-          if (req.session.event) {
-            Event.findByIdAndUpdate(req.session.event, {"user" : req.session.userId})
-                .then(event => {
-                    const eventID = req.session.event
-                    res.redirect(`/event/${eventID}`)
-                })
-            } else {
-                res.redirect('events')
-            }
-        }
-      })
-      
-      passportController(req, res, next);
-    }
-
 module.exports.login = (req, res, next) => {
 
     res.render('users/login')
@@ -115,40 +68,63 @@ module.exports.signup = (req, res, next) => {
 }
 
 module.exports.createUser = (req, res, next) => {
-    console.log("req.body");
-     const user = new User ({
-         ...req.body,
-         avatar: req.file ? req.path.file: undefined
-     });
-    console.log(req.body);
-    user.save()
-    .then(user => {
-        nodemailer.sendValidationEmail(user.email, user.activation.token, user.name);
-        console.log('holaholahola');
-        res.render('users/login', {
-            message: 'Comprueba tu correo electrónico para confirmar la cuenta'
-        });
-    })
-    .catch(error =>{
-        console.log(error);
-        //La siguiente linea, el Tweethack sale como mongoose.Error.sendValidationEmail, creo que estaba mal puesta...
-         if (error instanceof mongoose.Error.ValidationError) {
-             console.log("Eres tonto");
-             res.render('users/signup', { error: error.errors, user})
-         } else if(error.code === 11000) {
-             res.render('users/signup', { 
-                 user,
-                 error: {
-                     email: {
-                         message: "El usuario ya existe"
-                     }
-                 } 
-             })
-         } else {
-             next(error)
-         }
-    })
-    .catch(next)
+    const numberCompleted = `+${req.query.number.trim()}`
+
+
+    User.find({ number: numberCompleted}) 
+        .then(user => {
+            if (user) {
+                req.session.userId = user._id
+                res.redirect('/events')
+            } else {
+                const user = new User ({
+                    number: numberCompleted
+                })
+            
+                user.save()
+                    .then(user => {
+                        req.session.userId = user._id
+                        res.redirect('/events')
+                    })
+                    .catch(next)
+            }
+        })
+
+    console.log(number);
+
+    
+    //  const user = new User ({
+    //      ...req.body,
+    //      avatar: req.file ? req.path.file: undefined
+    //  });
+    // console.log(req.body);
+    // user.save()
+    // .then(user => {
+    //     nodemailer.sendValidationEmail(user.email, user.activation.token, user.name);
+        
+    //     res.render('users/login', {
+    //         message: 'Comprueba tu correo electrónico para confirmar la cuenta'
+    //     });
+    // })
+    // .catch(error =>{
+    //     console.log(error);
+    //     //La siguiente linea, el Tweethack sale como mongoose.Error.sendValidationEmail, creo que estaba mal puesta...
+    //      if (error instanceof mongoose.Error.ValidationError) {
+    //          res.render('users/signup', { error: error.errors, user})
+    //      } else if(error.code === 11000) {
+    //          res.render('users/signup', { 
+    //              user,
+    //              error: {
+    //                  email: {
+    //                      message: "El usuario ya existe"
+    //                  }
+    //              } 
+    //          })
+    //      } else {
+    //          next(error)
+    //      }
+    // })
+    // .catch(next)
 }
 
 module.exports.activateUser = (req, res, next) => {
