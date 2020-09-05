@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
         type: String,
     },
     number: {
-        type: Number,
+        type: String,
         required: [true, "Number is required"],
         trim : true,
         match: [NUMBER_PATTERN, "Number is invalid"]

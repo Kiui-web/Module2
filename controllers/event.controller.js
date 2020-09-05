@@ -1,19 +1,15 @@
 const mongoose = require('mongoose')
 const Event = require('../models/event.model')
-const nodemailer = require('../configs/mailer.config')
 const passport = require('passport')
 const shortUrl = require('node-url-shortener');
-const firebase = require('firebase')
 
 
 module.exports.detailEvent = (req, res, next) => {
-  Event.findById (req.params.id)
+  Event.findById(req.params.id)
   .populate('user')
   .then(event => {
-    if (event) {
-      res.render('event/eventDetail', {event})
-    }
-  })
+      res.render('event/eventDetails', {event})
+    })
   .catch(next);
 }
 
@@ -23,9 +19,7 @@ module.exports.createEvent = (req, res, next) => {
 }
 
 module.exports.saveEvent = (req, res, next) => {
-  const {title, date, duration, description, latitude, longitud} = req.body
- console.log(req.body);
- console.log(req.session.userId);
+  const {title, date, duration, description, latitude, longitud, location} = req.body
 
  const event = new Event ({
   "user": req.session.userId,
@@ -34,7 +28,8 @@ module.exports.saveEvent = (req, res, next) => {
   "duration": duration,
   "description" : description,
   "location": {
-    "coordinates": [latitude, longitud]
+    "coordinates": [latitude, longitud],
+    "name": location
   }
  })
 
@@ -110,7 +105,7 @@ module.exports.eventsAll = (req, res, next) => {
   
   Event.find({ "user" : req.session.userId})
       .populate('user')
-      .populate('attendants')
+      .populate('asisstants')
       .then(events => {
         if (events) {
         

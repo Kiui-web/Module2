@@ -3,36 +3,12 @@
     <img src="./images/Logo_Morado.png" alt="kiui-logo" class="logo-index">
     <h1 class="h1 mb-5 mt-5">Inicia sesión en Kiui</h1>
   </div>
-  <form action="/login" method="POST">
-    <div class="form-group">
-      <label for="number">Introduce el número de telefono</label>
-      <input name="number" type="tel" class="form-control {{#if error.number }}is-invalid{{/if}}" id="phoneNumber"
-        value="{{ user.number }}">
-
-      {{#if error.number}}
-        <div class="invalid-feedback">
-          {{error.number.message}}
-        </div>
-      {{/if}}
-    </div>
-    <div style="display: none;" class="form-group mb-5">
-      <label for="code">Introduce el código</label>
-      <input name="code" type="text" class="form-control {{#if error.password }}is-invalid{{/if}}" id="code">
-
-        {{#if error.code}}
-          <div class="invalid-feedback">
-            {{error.code.message}}
-          </div>
-      {{/if}}
-    </div>
-    <div id="inset_form"></div>
-    <div class="text-center">
-       <button type="submit" class="boton btn-create mt-5">Continuar</button>
-    </div>
-    
-  </form>
+  <div id="firebaseui-auth-container"></div>
+  <div id="loader">Loading...</div>
  </div>
- 
+ <!-- Add the latest firebase dependecies from CDN -->
+        <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-auth.js"></script>
  
  
  
