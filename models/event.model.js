@@ -36,12 +36,13 @@ const eventSchema = new mongoose.Schema(
         type: String,
         default: "Point"
       },
-      coordinates: [Number]
+      coordinates: [Number],
+      name: String
     },
-    // asisstants : [{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "User"
-    // }]
+    asisstants : [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }]
   },
  );
 
