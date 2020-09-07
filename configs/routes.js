@@ -10,7 +10,7 @@ router.get('/login', userController.login)
 router.get('/signup', userController.signup)
 router.get('/users',  userController.createUser)
 router.get('/profile', userController.profile);
-router.post('/logout', sessionMiddleware.isAuthenticated, userController.logout);
+router.post('/logout', userController.logout);
 
 
 router.get('/eventes', eventController.detailEvent)

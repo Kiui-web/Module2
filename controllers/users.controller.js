@@ -5,12 +5,21 @@ const passport = require('passport')
 const sessionstorage = require('sessionstorage');
 
 
+const updateId = (req, res) => {
+    if (req.session.event) {
+        Event.findByIdAndUpdate(req.session.event, {"user" : req.session.userId, "asisstants" : req.session.userId})
+            .then(event => {
+                const eventID = req.session.event
+                res.redirect(`/event/${eventID}`)
+            })
+    } else {
+        res.redirect('events')
+    }
+}
 
 module.exports.login = (req, res, next) => {
     res.render('users/login')
 }
-
-
 
 module.exports.signup = (req, res, next) => {
     res.render('users/signup')
@@ -18,21 +27,12 @@ module.exports.signup = (req, res, next) => {
 
 module.exports.createUser = (req, res, next) => {
     const numberCompleted = `+${req.query.number.trim()}`
- 
-    User.find({ number: numberCompleted}) 
+    
+    User.findOne({ number: numberCompleted}) 
         .then(user => {
             if (user.length !== 0) {
                 req.session.userId = user._id
-                if (req.session.event) {
-                    Event.findByIdAndUpdate(req.session.event, {"user" : req.session.userId})
-                        .then(event => {
-                            const eventID = req.session.event
-                            res.redirect(`/event/${eventID}`)
-                        })
-                } else {
-                    res.redirect('events')
-                }
-
+                updateId(req, res)
             } else {
                 const user = new User ({
                     number: numberCompleted
@@ -41,24 +41,12 @@ module.exports.createUser = (req, res, next) => {
                 user.save()
                     .then(user => {
                         req.session.userId = user._id
-                        if (req.session.event) {
-                            Event.findByIdAndUpdate(req.session.event, {"user" : req.session.userId})
-                                .then(event => {
-                                    const eventID = req.session.event
-                                    res.redirect(`/event/${eventID}`)
-                                })
-                        } else {
-                            res.redirect('events')
-                        }
-
+                        updateId(req, res)
                     })
                     .catch(next)
             }
         })
         .catch(next)
-
-        
-
 }
 
 module.exports.index = (req, res, next) => {

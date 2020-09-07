@@ -6,7 +6,7 @@ body,html {
     line-height: 1.4;
 }
 
-#map {
+#map, #map-event {
     height: 50vh;
     width: 50%;
   }

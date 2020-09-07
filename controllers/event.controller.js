@@ -7,6 +7,7 @@ const shortUrl = require('node-url-shortener');
 module.exports.detailEvent = (req, res, next) => {
   Event.findById(req.params.id)
   .populate('user')
+  .populate('asisstants')
   .then(event => {
       res.render('event/eventDetails', {event})
     })
@@ -20,7 +21,7 @@ module.exports.createEvent = (req, res, next) => {
 
 module.exports.saveEvent = (req, res, next) => {
   const {title, date, duration, description, latitude, longitud, location} = req.body
-
+  console.log(req.session);
  const event = new Event ({
   "user": req.session.userId,
   "title" : title,
@@ -30,7 +31,8 @@ module.exports.saveEvent = (req, res, next) => {
   "location": {
     "coordinates": [latitude, longitud],
     "name": location
-  }
+  },
+  "asisstants" : req.session.userId
  })
 
  event.save()

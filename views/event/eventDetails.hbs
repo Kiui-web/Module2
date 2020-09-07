@@ -1,2 +1,42 @@
-<h1>hola</h1>
+<div class="container">
+    <div class="col-md-12">
+        <div class="row">
+            
+
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+
+
+<button type="button" class="btn btn-whatsapp"><i class="fa fa-whatsapp" aria-hidden="true"></i></button>
+<a class="btn-floating btn-lg btn-whatsapp" type="button" role="button"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+<form action="/logout" method="post">
+    <button type="submit">Salir</button>
+</form>
 <h1>{{event}}</h1>
+    <div id="map" name="map" ></div>
+    
+{{event.location.coordinates.[0]}}
+
+<script>
+    
+  const coordinates = {
+    "lat" : {{{event.location.coordinates.[0]}}},
+    "lng" : {{{event.location.coordinates.[1]}}}
+  }
+
+  const market = {
+        
+
+  }
+
+  window.points = coordinates;
+  window.marker = 
+  
+</script>
