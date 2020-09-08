@@ -36,10 +36,14 @@ const uiConfig = {
         // Query parameter name for sign in success url.
   //queryParameterForSignInSuccessUrl: '/events?mode=select&signInSuccessUrl=/events?number=',
   signInSuccessUrl: `/users`,
-  signInOptions: [
-    // Leave the lines as is for the providers you want to offer your users.
-    firebase.auth.PhoneAuthProvider.PROVIDER_ID
+  signInOptions: [{
+    provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+    // The default selected country.
+    defaultCountry: 'ES'
+    }
+    
   ],
+  
   // Terms of service url.
   tosUrl: '<your-tos-url>',
   // Privacy policy url.

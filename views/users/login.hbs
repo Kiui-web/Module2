@@ -1,11 +1,20 @@
-  <div class="login">
-  <div class="text-center">
-    <img src="./images/Logo_Morado.png" alt="kiui-logo" class="logo-index">
-    <h1 class="h1 mb-5 mt-5">Inicia sesión en Kiui</h1>
+  <div class="container">
+    <div class="col-md-7">
+      <div class="login">
+        <div class="text-center">
+          <div class="nube">
+            <div id = "cloud"><span class='shadow'></span></div>
+          </div>
+          <img src="./images/Logo_Morado.png" alt="kiui-logo" class="logo-index">
+          <h3 class="h3 mb-5 mt-5">Inicia sesión en Kiui</h3>
+        </div>
+        <div id="firebaseui-auth-container"></div>
+        <div id="loader">Loading...</div>
+      </div>
+    </div>
   </div>
-  <div id="firebaseui-auth-container"></div>
-  <div id="loader">Loading...</div>
- </div>
+  
+  
  <!-- Add the latest firebase dependecies from CDN -->
         <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-auth.js"></script>
