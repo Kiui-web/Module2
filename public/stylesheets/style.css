@@ -195,18 +195,7 @@ body,html {
     width: 7em;
   }
 
-  .navbar {
-    border-bottom: 1px solid #EEE;
-    box-shadow: 5px 5px 5px #EEE;
-  }
-
-  #nav-show {
-    /* display: none; */
-    border: 1px solid #888;
-    box-shadow: 1px 1px 1px #888;
-    padding: .8em .4em;
-    text-align: initial;
-  }
+  
 
   .a-button {
     color:#888;
@@ -736,3 +725,21 @@ background: #757575 !important;
 }
 }
 
+.navbar-login
+{
+    width: 305px;
+    padding: 10px;
+    padding-bottom: 0px;
+}
+
+.navbar-login-session
+{
+    padding: 10px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+.icon-size
+{
+    font-size: 87px;
+}

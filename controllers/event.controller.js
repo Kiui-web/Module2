@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Event = require('../models/event.model')
 const passport = require('passport')
 const shortUrl = require('node-url-shortener');
-
+const User = require('../models/user.model');
 
 module.exports.detailEvent = (req, res, next) => {
   Event.findById(req.params.id)
@@ -138,8 +138,9 @@ module.exports.eventsAll = (req, res, next) => {
       .populate('asisstants')
       .then(events => {
         if (events) {
-        
+       
             const dateNow = new Date().toISOString().substr(0, 16)
+            
             events = events.map(event => {
             const hour = event.date.toISOString().slice(11, 16)
             const day = event.date.toISOString().slice(08, 10)
@@ -167,9 +168,12 @@ module.exports.eventsAll = (req, res, next) => {
           const eventPresent = events.filter(event => {
             return event.date.toISOString() >= dateNow
           })
-
-          
-          res.render('event/events', {eventPast, eventPresent, user: req.session.userId})
+          User.findById(req.session.userId)
+            .then(user => {
+            res.render('event/events', {eventPast, eventPresent, user})
+              
+            })
+            .catch(next)
         }
       })
       .catch(next);
