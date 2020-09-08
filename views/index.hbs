@@ -1,18 +1,76 @@
-<div class="text-index">
+<div class="container-fluid">
+    <div class="col-md-6">
+        <div class="explain-index">
+            <div class="explain-index-text"><i class="fa fa-plus-circle" aria-hidden="true"></i>Crea tus eventos personalizados.</div>
+            <div class="explain-index-text"><i class="fa fa-share-alt" aria-hidden="true"></i>Comparte el evento a traves de whasap.</div>
+            <div class="explain-index-text"><i class="fa fa-user-plus" aria-hidden="true"></i>Gestiona facilmente la asistencia</div>
+        </div>
+    </div>
+
+
+
+    </div>
+
+
+
+
+
+
+</div>
+
+
+
+<div class="text-index" >
     <img src="./images/kiui-logo.png" alt="kiui-logo" class="logo-index">
 
     <h1 class="title-index ml-5 mt-5 mb-5 mr-5">
-        Organiza eventos con tus amigos
+        Organiza eventos con tus 
+            <span id="typewrite" class="wrap"></span>
     </h1>
-    <p class="d-index ml-5">Gestionar tus eventos nunca ha sido tan fácil</p>
+    <p class="d-index ml-5">Gestionar eventos nunca ha sido tan fácil</p>
     <div class="text-center">
         <a href="/createEvent" class="btn btn-create">Crear evento</a>
         <a href="/login" class="btn btn-login mt-3">Iniciar sesión</a>
     </div>
 </div>
-    <div class="explain-index">
-        <div class="explain-index-text"><i class="fa fa-plus-circle" aria-hidden="true"></i>Crea tus eventos personalizados.</div>
-        <div class="explain-index-text"><i class="fa fa-share-alt" aria-hidden="true"></i>Comparte el evento a traves de whasap.</div>
-        <div class="explain-index-text"><i class="fa fa-user-plus" aria-hidden="true"></i>Gestiona facilmente la asistencia</div>
-    </div>
 
+
+<script>
+    const name = ["amigos", "compañeros de trabajo", "colegas", "familia"]
+    let pos = 0
+
+    const writing = (arr , pos = 0) => {
+        let arrFromStr = arr[pos].split('');
+        let span = document.getElementById('typewrite')
+        let  i = 0;
+        const total = arr.length - 1
+        
+        let printStr = setInterval(function(){
+            span.innerHTML += arrFromStr[i];
+            i++;
+
+            if (i === arrFromStr.length ){
+                clearInterval(printStr);
+                notWriting(arr[pos], total)
+            }
+        },150);
+    };
+    
+
+    let notWriting = (str, total) => {
+        let span = document.getElementById('typewrite')
+        let j = str.length
+        total === pos ? pos = 0 : pos++
+        
+        const noprint = setInterval(function(){
+             span.innerHTML = str.slice(0,j)
+            j--
+            if (j === -1 ){
+                clearInterval(noprint);
+                writing(name, pos)
+            }
+        },150);
+    }
+
+    writing(name);
+</script>

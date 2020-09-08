@@ -707,9 +707,10 @@ background: #757575 !important;
 }
 
 .explain-index {
-  background-color : #5c2385;
-  padding: 1em 0 1em 3em;
-  margin: 5em 0;
+  background: url(../images/morado-cielo.png) no-repeat center center;
+  background-size: cover;
+  padding: 1.4em 0 1.4em 3em;
+  margin: 3em 0;
 }
 .explain-index-text {
   margin: 2em auto;
