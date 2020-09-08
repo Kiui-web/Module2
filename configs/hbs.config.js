@@ -12,3 +12,11 @@ hbs.registerHelper('date', (date) => {
 hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
   return arg1 === arg2 ? options.fn(this) : options.inverse(this)
 })
+
+hbs.registerHelper('if_eq', function(a, b, opts) {
+  if (a == b) {
+      return opts.fn(this);
+  } else {
+      return opts.inverse(this);
+  }
+});

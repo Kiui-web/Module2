@@ -10,27 +10,27 @@ function initMap() {
     zoom: 7,
   });
 
-  console.log(window.points);
-  if(window.points) {
-    
-      map.setCenter(window.points)
-      map.setZoom(14)
 
-      // const markerEvent = new google.maps.Marker({
-      //   map,
-      //   position: coordinates,
-      //   label: "D",
-      // });
-      // infowindowEvent.open(mapEvent, markerEvent);
+  if(window.points) {
+      console.log(window.description);
+      map.setCenter(window.points)
+      map.setZoom(17)
+  
+      const markerEvent = new google.maps.Marker({
+        position : window.points,
+        map,
+        label : "K",
+      })
+    
 
   } else if (navigator.geolocation) {
-    console.log('asdf');
     navigator.geolocation.getCurrentPosition(
       function (position) {
         const pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         };
+        
 
         const marker = new google.maps.Marker({
           position: pos,
@@ -47,6 +47,7 @@ function initMap() {
     // Browser doesn't support Geolocation
     handleLocationError(false, infowindow, map.getCenter());
   }
+  
 
   const card = document.getElementById("pac-card");
   const input = document.getElementById("pac-input");
