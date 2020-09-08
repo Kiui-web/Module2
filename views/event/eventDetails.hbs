@@ -1,28 +1,84 @@
-<div class="container">
+
+<div class="container-fluid upper-event">
+  <div class="container">
     <div class="col-md-12">
         <div class="row">
-            
+            <div class="calendar">
+              <div id="red-calendar"></div>
+              <div id="box-calendar">{{event.day}}</div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="date-event">
+            {{event.day}} {{event.month}}, {{event.hour}} - Duración: {{event.duration}} Horas
+          </div>
+        </div>
+        <div class="row">
+          <h2 id="title-event"><b>{{event.title}}</b></h2>
+        </div>
+        <div class="row">
+          <div id="direction-event">{{event.location.name}}</div>
+        </div>
+        <hr/>
+        <div class="row">
+          {{#if_eq user undefined}}
+            <input type="text" class="mr-2" name="name-assistant" id="name-asistant" placeholder="Introduce su nombre">
+            <div class="button-event">
+              <a class="btn btn-assistant" id="{{event._id}}" type="submit" onclick="addAssistant(event)"><i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i>Asistir</a>
+              <a href="/share/{{event._id}}" class="btn btn-whatsapp"><i class="fa fa-whatsapp fa-2x" aria-hidden="true"></i></a>
+            </div>
+          {{else}}
+            <div class="button-event">
+              <a class="btn btn-assistant" href="/jointevent"><i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i>Asistiré</a>
+              <a href="/share/{{event._id}}" class="btn btn-whatsapp"><i class="fa fa-whatsapp fa-2x" aria-hidden="true"></i></a>
+            </div>
+          {{/if_eq}}
+          </div>
+   
+    </div>
+    </div>
+</div>
+<div class="background-gray">
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="container-detail">
+      
+          <h3>Detalles</h3>
+        
+        <div><i class="fa fa-users mr-3" aria-hidden="true"></i>{{event.assistants.length}} personas asistirán al evento.</div>
+        
+        <div><i class="fa fa-calendar mr-3" aria-hidden="true"></i>{{event.day}} {{event.month}}, {{event.hour}}.</div>
+        
+        <div><i class="fa fa-clock-o mr-3" aria-hidden="true"></i>{{event.duration}} horas.</div>
+        
+        <div><i class="fa fa-map-marker mr-3" aria-hidden="true"></i>{{event.location.name}}</div>
+        <div>{{event.description}}</div>
 
+      </div>
+      <div class="container-assistants">
+        <h3>Lista de asistentes</h3>
+        {{#ifEquals event.assistants.length 0}}
+          <p id="no-assistants">No tiene asistentes en este evento.</p>
+        {{/ifEquals}}
+          {{#each event.assistants}}
+            <p><b>{{@index .}}</b>{{this.assistants.name}}</p>
+          {{/each}}
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="container-map">
+        <a href="{{event.googleMapsUrl}}">
+        <div id="map" name="map" ></div>
+        </a>
+          <div>
+            <p>{{event.location.name}}</p>
+          </div>
         </div>
     </div>
-
-
-
-
+  </div>
+  </div>
 </div>
-
-
-
-
-<button type="button" class="btn btn-whatsapp"><i class="fa fa-whatsapp" aria-hidden="true"></i></button>
-<a class="btn-floating btn-lg btn-whatsapp" type="button" role="button"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
-<form action="/logout" method="post">
-    <button type="submit">Salir</button>
-</form>
-<h1>{{event}}</h1>
-    <div id="map" name="map" ></div>
-    
-{{event.location.coordinates.[0]}}
 
 <script>
     
@@ -31,12 +87,10 @@
     "lng" : {{{event.location.coordinates.[1]}}}
   }
 
-  const market = {
-        
 
-  }
 
   window.points = coordinates;
-  window.marker = 
+
+  
   
 </script>

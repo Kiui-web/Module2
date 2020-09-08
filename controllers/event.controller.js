@@ -8,8 +8,36 @@ module.exports.detailEvent = (req, res, next) => {
   Event.findById(req.params.id)
   .populate('user')
   .populate('asisstants')
-  .then(event => {
-      res.render('event/eventDetails', {event})
+  .then(eventDetail => {
+    const latitud = eventDetail.location.coordinates[0]
+    const longitud = eventDetail.location.coordinates[1]
+    const hour = eventDetail.date.toISOString().slice(11, 16)
+    const day = eventDetail.date.toISOString().slice(08, 10)
+    const month = eventDetail.date.toISOString().slice(05, 07)
+    const mNames = monthName(month)
+    let googleMaps = `https://maps.google.com/?q=${latitud},${longitud}&z=17&t=m`
+
+        shortUrl.short(googleMaps, function(err, url){
+          googleMaps = url
+        });
+      
+      const event = {
+        "_id": eventDetail._id,
+        "user" : eventDetail.user,
+        "date" : eventDetail.date,
+        "duration" : eventDetail.duration,
+        "title" : eventDetail.title,
+        "description" : eventDetail.description,
+        "image" : eventDetail.image,
+        "location" : eventDetail.location,
+        "assistants" : eventDetail.asisstants,
+        "hour" : hour,
+        "day" : day,
+        "month": mNames,
+        "googleMapsUrl" : googleMaps
+      }
+      console.log(req.session.userId);
+      res.render('event/eventDetails', {event, user: req.session.userId})
     })
   .catch(next);
 }
@@ -65,7 +93,7 @@ module.exports.share = (req, res, next) => {
         const duration = event.duration
         const latitud = event.location.coordinates[0]
         const longitud = event.location.coordinates[1]
-        const googleMaps = `https://maps.google.com/?q=${latitud},${longitud}&z=17&t=m`
+        let googleMaps = `https://maps.google.com/?q=${latitud},${longitud}&z=17&t=m`
 
         shortUrl.short(googleMaps, function(err, url){
           googleMaps = url
@@ -111,7 +139,7 @@ module.exports.eventsAll = (req, res, next) => {
       .then(events => {
         if (events) {
         
-          const dateNow = new Date().toISOString().substr(0, 16)
+            const dateNow = new Date().toISOString().substr(0, 16)
             events = events.map(event => {
             const hour = event.date.toISOString().slice(11, 16)
             const day = event.date.toISOString().slice(08, 10)

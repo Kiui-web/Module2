@@ -13,14 +13,14 @@ router.get('/profile', userController.profile);
 router.post('/logout', userController.logout);
 
 
-router.get('/eventes', eventController.detailEvent)
-
 router.get('/event/:id', eventController.detailEvent)
 router.get('/events', eventController.eventsAll)
 router.get('/createEvent', eventController.createEvent)
 router.post('/event', eventController.saveEvent)
 router.get('/joinevent', eventController.joinEvent)
 router.get('/share/:id', eventController.share)
+
+
 
 
 
