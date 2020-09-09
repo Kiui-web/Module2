@@ -20,7 +20,7 @@
         </div>
         <hr/>
         <div class="row" id="max-width-event-detail">
-            <input type="text" class="mr-2" name="name-assistant" id="name-asistant" placeholder="Introduce su nombre">
+            <input type="text" class="mr-2" name="name-assistant" id="name-assistant" placeholder="Introduce su nombre">
             <div class="button-event">
               <button class="btn btn-assistant" name="button-assistant" id="{{event._id}}" type="submit" onclick="addAssistant(event)"><i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i>Asistir</button>
               {{#if_eq event.user._id user}}
@@ -56,10 +56,10 @@
         {{#ifEquals event.assistants.length 0}}
           <p id="no-assistants">No tiene asistentes en este evento.</p>
         {{/ifEquals}}
-        <ol>
+        <ol id="assistant-event">
           {{#each event.assistants}}
-            <li>{{this.number}}
-              <button class="btn-delete float-right" onclick="" id="{{this.number}}"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+            <li>{{this}}
+              <button class="btn-delete" onclick="" id="{{this.number}}"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
             </li>
           {{/each}}
         </ol>

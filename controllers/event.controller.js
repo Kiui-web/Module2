@@ -7,7 +7,7 @@ const User = require('../models/user.model');
 module.exports.detailEvent = (req, res, next) => {
   Event.findById(req.params.id)
   .populate('user')
-  .populate('asisstants')
+  .populate('assistants.creator')
   .then(eventDetail => {
     const latitud = eventDetail.location.coordinates[0]
     const longitud = eventDetail.location.coordinates[1]
@@ -20,6 +20,7 @@ module.exports.detailEvent = (req, res, next) => {
         shortUrl.short(googleMaps, function(err, url){
           googleMaps = url
         });
+        console.log(eventDetail);
       
       const event = {
         "_id": eventDetail._id,
@@ -30,14 +31,13 @@ module.exports.detailEvent = (req, res, next) => {
         "description" : eventDetail.description,
         "image" : eventDetail.image,
         "location" : eventDetail.location,
-        "assistants" : eventDetail.asisstants,
+        "assistants" : eventDetail.assistants,
         "hour" : hour,
         "day" : day,
         "month": mNames,
         "googleMapsUrl" : googleMaps
       }
-      console.log(event.user._id);
-      console.log(req.session.userId);
+      console.log(event);
       res.render('event/eventDetails', {event, user: req.session.userId})
     })
   .catch(next);
@@ -61,7 +61,7 @@ module.exports.saveEvent = (req, res, next) => {
     "coordinates": [latitude, longitud],
     "name": location
   },
-  "asisstants" : req.session.userId
+  "assistants" : req.session.userId
  })
 
  event.save()
@@ -82,7 +82,7 @@ module.exports.saveEvent = (req, res, next) => {
 module.exports.share = (req, res, next) => {
  Event.findById(req.params.id)
     .populate('user')
-    .populate('asisstants')
+    .populate('assistants')
     .then(event => {
         const year = event.date.toISOString().slice(0, 4)
         const hour = event.date.toISOString().slice(11, 16)
@@ -136,7 +136,7 @@ module.exports.eventsAll = (req, res, next) => {
   
   Event.find({ "user" : req.session.userId})
       .populate('user')
-      .populate('asisstants')
+      .populate('assistant.creator')
       .then(events => {
         if (events) {
          
@@ -156,7 +156,7 @@ module.exports.eventsAll = (req, res, next) => {
               "description" : event.description,
               "image" : event.image,
               "location" : event.location,
-              "assistants" : event.asisstants,
+              "assistants" : event.assistants,
               "hour" : hour,
               "day" : day,
               "month": mNames
@@ -185,6 +185,21 @@ module.exports.joinEvent = (req, res, next) => {
   res.render('event/joinevent')
 }
 
+module.exports.add = (req, res, next) => {
+  const {idEvent, name} = req.body
+  console.log(name);
+  Event.findByIdAndUpdate(idEvent , {$push: {"assistants" : name }})
+      .then (event => {
+
+          Event.findById(idEvent)
+              .then(event => {
+                   res.json(event)
+              })
+              .catch(next)
+        
+      })
+      .catch(next)
+}
 
 
 function monthName (month) {

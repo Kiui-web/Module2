@@ -39,10 +39,10 @@ const eventSchema = new mongoose.Schema(
       coordinates: [Number],
       name: String
     },
-    asisstants : [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
-    }]
+    assistants : [{
+        type: String,
+        trim: true
+      }]
   },
  );
 
