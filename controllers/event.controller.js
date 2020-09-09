@@ -36,6 +36,7 @@ module.exports.detailEvent = (req, res, next) => {
         "month": mNames,
         "googleMapsUrl" : googleMaps
       }
+      console.log(event.user._id);
       console.log(req.session.userId);
       res.render('event/eventDetails', {event, user: req.session.userId})
     })
@@ -123,7 +124,7 @@ module.exports.share = (req, res, next) => {
         const whasapUrl = `https://api.whatsapp.com/send?phone=${user.number}&text=`
 
 
-
+        res.redirect(whasapUrl)
 
 
     })
@@ -138,7 +139,7 @@ module.exports.eventsAll = (req, res, next) => {
       .populate('asisstants')
       .then(events => {
         if (events) {
-       
+         
             const dateNow = new Date().toISOString().substr(0, 16)
             
             events = events.map(event => {

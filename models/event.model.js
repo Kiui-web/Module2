@@ -46,12 +46,6 @@ const eventSchema = new mongoose.Schema(
   },
  );
 
-// eventSchema.virtual("attendants", {
-//   ref: "Attendant",
-//   localField: "_id",
-//   foreingField: "event",
-//   justOne: true
-// })
 
 const Event = mongoose.model("Event", eventSchema);
 
