@@ -18,14 +18,14 @@ Promise.all([
         const user = new User({
           name: faker.name.findName(),
           avatar: faker.image.avatar(),
-          number: faker.phone.phoneNumber('6########'),
           createdAt: faker.date.past(),
         });
 
+        user.number = `+34${faker.phone.phoneNumber('6########')}`
+       
         user.save()
             .then(user => {
                 userIds.push(user._id);
-                //console.log(userIds);
 
                 for(let j = 0; j < 10; j++) {
                     const event = new Event({
@@ -33,12 +33,15 @@ Promise.all([
                       date: faker.date.between(faker.date.past(), faker.date.future()),
                       duration: numberDurationRandom (5),
                       title: faker.name.title(),
-                      asisstants: assistantsRandom(userIds),
                       description: faker.lorem.paragraph(),
                       createdAt: faker.date.past(),
                     });
 
                     event.location.coordinates = [faker.address.latitude(), faker.address.longitude()]
+
+                    for (let i = 0; i < numberDurationRandom(10); i++) {
+                      event.assistants.push(faker.name.firstName())
+                    }
 
                     event.save()
                         .then(event => {
@@ -56,10 +59,3 @@ const numberDurationRandom = (number = 5) => {
     return Math.floor(Math.random()* (number - 1) + 1)
 }
 
-const assistantsRandom = (users) => {
-    const assistantsIds = []
-    for (let i = 0; i < numberDurationRandom(users.length); i++) {
-        assistantsIds.push(users[i])
-    }
-    return assistantsIds
-}

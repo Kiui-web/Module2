@@ -7,7 +7,7 @@ const sessionstorage = require('sessionstorage');
 
 const updateId = (req, res) => {
     if (req.session.event) {
-        Event.findByIdAndUpdate(req.session.event, {"user" : req.session.userId, "asisstants" : req.session.userId})
+        Event.findByIdAndUpdate(req.session.event, {"user" : req.session.userId})
             .then(event => {
                 const eventID = req.session.event
                 res.redirect(`/event/${eventID}`)
@@ -21,16 +21,14 @@ module.exports.login = (req, res, next) => {
     res.render('users/login')
 }
 
-module.exports.signup = (req, res, next) => {
-    res.render('users/signup')
-}
 
 module.exports.createUser = (req, res, next) => {
     const numberCompleted = `+${req.query.number.trim()}`
     
     User.findOne({ number: numberCompleted}) 
         .then(user => {
-            if (user.length !== 0) {
+
+            if (user !== null) {
                 req.session.userId = user._id
                 updateId(req, res)
             } else {

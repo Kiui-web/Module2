@@ -12,7 +12,6 @@ function initMap() {
 
 
   if(window.points) {
-      console.log(window.description);
       map.setCenter(window.points)
       map.setZoom(17)
   

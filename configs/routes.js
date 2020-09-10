@@ -7,7 +7,6 @@ const uploads = require('../configs/cloudinary.config')
 
 
 router.get('/login', userController.login)
-router.get('/signup', userController.signup)
 router.get('/users',  userController.createUser)
 router.get('/profile', userController.profile);
 router.post('/logout', userController.logout);
@@ -19,6 +18,8 @@ router.get('/createEvent', eventController.createEvent)
 router.post('/event', eventController.saveEvent)
 router.get('/joinevent', eventController.joinEvent)
 router.get('/share/:id', eventController.share)
+
+router.post('/assistant/add', eventController.add)
 
 
 

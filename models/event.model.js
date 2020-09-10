@@ -39,19 +39,13 @@ const eventSchema = new mongoose.Schema(
       coordinates: [Number],
       name: String
     },
-    asisstants : [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
-    }]
+    assistants : [{
+        type: String,
+        trim: true
+      }]
   },
  );
 
-// eventSchema.virtual("attendants", {
-//   ref: "Attendant",
-//   localField: "_id",
-//   foreingField: "event",
-//   justOne: true
-// })
 
 const Event = mongoose.model("Event", eventSchema);
 

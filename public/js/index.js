@@ -1,23 +1,26 @@
-function muestra_oculta(id){
-    if (document.getElementById){ //se obtiene el id
-    const el = document.getElementById(id); //se define la variable "el" igual a nuestro div
-    el.style.display = (el.style.display == 'none') ? 'block' : 'none'; //damos un atributo display:none que oculta el div
-    }
-    }
-    window.onload = function(){/*hace que se cargue la función lo que predetermina que div estará oculto hasta llamar a la función nuevamente*/
-    muestra_oculta('nav-show');/* "contenido_a_mostrar" es el nombre que le dimos al DIV */
-    }
-
 
 function addAssistant(e) {
-    const button = e.currentTarget
-    axios.post(`http://localhost:3000/assistant/${button.id}/add`)
-		.then(res => {
-			console.log(res);
-			const add = res.data.like;
-			button.querySelector('.likes-count').innerText = Number(button.querySelector('.likes-count').innerText) + add;
-		})
-		.catch(console.error)
+	const idEvent = e.target.id
+	const nameBad = document.getElementById('name-assistant').value
+	const ol = document.getElementById('assistant-event')
+	const name = firstLetterUpperCase(nameBad)
+	
+	if (name !== "") {
+		axios.post(`http://localhost:3000/assistant/add`,{idEvent, name})
+			.then(res => {
+				document.getElementById('name-assistant').value = ''
+				const arrAssistants = res.data.assistants;
+				const li = document.createElement('li')
+				li.innerText = arrAssistants.slice(-1)[0]
+				ol.appendChild(li)
+			})
+			.catch(console.error)
+	}
 }
 
+
+function firstLetterUpperCase(string) 
+{
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}
 

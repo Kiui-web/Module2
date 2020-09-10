@@ -17,11 +17,49 @@ body,html {
 
   /* event Detail */
 
+ /* count li index */
+ ol {
+  margin: 0 0 1.5em;
+  padding: 0;
+  counter-reset: item;
+}
+
+ol > li {
+  margin: 0 1em;
+  padding: 0 0 0 2em;
+  text-indent: -2em;
+  list-style-type: none;
+  counter-increment: item;
+}
+
+ol > li:before {
+  display: inline-block;
+  width: 1em;
+  padding-right: 0.5em;
+  font-weight: bold;
+  text-align: right;
+  content: counter(item) ".";
+}
+/* continue detailsevent */
+
+.btn-delete {
+  background-color: red;
+  color: white;
+  border-radius: 25px;
+  border:0;
+}
+
+#max-width-event-detail {
+  width: 150%;
+}
+
 .background-gray {
   background-color:#EEE;
   padding-bottom: 1.5em;
   margin-bottom: -1em;
 }
+
+
 .container-assistants, .container-detail,.container-map {
   background-color:white;
 }
@@ -31,7 +69,7 @@ body,html {
   border: 0;
   border-radius: 10px;
   padding-left: 10px;
-  width: 12em;
+  width: 11em;
 }
 
 #name-asistant:focus {
@@ -151,13 +189,6 @@ body,html {
 
 
 
-
-
-
-
-
-
-
   #pac-container {
     padding-bottom: 12px;
     margin-right: 12px;
@@ -194,57 +225,92 @@ body,html {
   .logo-nav {
     width: 7em;
   }
+  /* Index */
 
-  
-
-  .a-button {
-    color:#888;
-  }
 
   .logo-index {
-    width: 10rem;
+    width: 5rem;
     height: auto;
-    margin: 30px 40px;
   }
-  
-  .title-index {
-    font-size: 5rem;
-    font-weight: bold;
-  }
-  .d-index {
-    font-size: 1rem;
-    margin: 10rem 1rem 2rem;
-    font-weight: bold;
-  }
-
-  .h1 {
-    font-size: 3.2rem;
-  }
-  
-  .btn-create {
-    background-color: #912180;
-    padding: 30px 40px;
-    border: 1px solid white;
-    color: white;
-    font-size: 2rem;
-    border-radius: 30px;
-    width: 90%;
-    font-weight: bold;
-  }
-  
   .explain-index {
-    background-color : #5c2385;
-    padding: 1em 0 1em 3em;
-    margin: 5em 0;
-  }
-  .explain-index-text {
-    margin: 2em auto;
+    background: url(../images/morado-cielo.png) no-repeat center center;
+    background-size: cover;
+    padding: 1.4em 0 1.4em 3em;
+    height: 96vh;
+    margin-left: -2em;
     color: white;
-    font-size: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+  }
+  .explain-index-text { 
+    margin: 2.2em auto;
+    font-weight: 500;
+    color: white;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
   }
   .explain-index-text > i {
     margin-right: 20px;
+    font-size: 1.5em;
   }
+
+  .text-index {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 96vh;
+  }
+
+  .btn-create {
+    background-color: #912180;
+    padding: 10px 40px;
+    border: 1px solid white;
+    color: white;
+    font-size: 1rem;
+    border-radius: 30px;
+    width: 110%;
+    font-weight: bold;
+  }
+
+  .btn-login {
+    padding: 10px 40px;
+    background-color: transparent;
+    border: 1px solid #912180;
+    color:#912180;
+    font-size: 1rem;
+    border-radius: 30px;
+    width: 110%;
+    font-weight: bold;
+  }
+  
+  .btn-login:hover {
+    background-color: #9121804a;
+    color: #912180;
+  }
+  .btn-create:hover {
+    background-color: #5e1553;
+    color: white;
+  }
+  .d-index {
+    font-size: 1rem;
+    font-weight: 800;
+    margin: 0.8em auto;
+  }
+   
+  .title-index {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 1em auto;
+  }
+  .width-index {
+    width: 60%;
+  }
+
+ /* end Index */
 
 .login {
   margin: 3em 1em;
@@ -308,6 +374,15 @@ body,html {
   font-size: 2rem;
 }
 
+.btn-events .btn-assistant{
+  padding: 5px 20px;
+  font-size: .9em;
+}
+
+.btn-events .btn-whatsapp {
+  padding: 1px 7px;
+}
+
 
 .event-list .event-item {
   padding: 1rem 1.9rem;
@@ -315,10 +390,10 @@ body,html {
   margin: 0 0.9375rem 1.875rem 0.9375rem;
   background-color: #ffffff;
   border-radius: 8px;
-  box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
-  -webkit-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
-  -moz-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
-  -ms-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+  box-shadow:  1px 1px 5px grey;
+  -webkit-box-shadow:  1px 1px 5px grey;
+  -moz-box-shadow:  1px 1px 5px grey;
+  -ms-box-shadow:  1px 1px 5px grey;
 }
 
 .event-list .event-item.featured {
@@ -328,6 +403,11 @@ body,html {
 .event-list .event-item .event-schedule {
   color: #3c4142;
   margin-bottom: 0.625rem;
+}
+
+#events-separation {
+  border-top: 1.5px solid #bdbdbdb5;
+
 }
 
 .event-list .event-item .event-schedule .event-icon {
@@ -373,7 +453,7 @@ body,html {
 .event-list .event-item .event-content {
   color: #b1bac5;
   margin-bottom: 0.625rem;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 300;
 }
 
@@ -453,82 +533,36 @@ body,html {
   display: flex !important;
 }
 
-
-.owl-prev {
-width: 100px;
-height: 100%;
-position: absolute;
-top: 0;
-margin-left: 0;
-display: block !important;
-background-image: linear-gradient(to right, #F4F7FD, transparent) !important;
+.title-events {
+  padding: 2em .4em;
 }
 
-.owl-prev .owl-nav-wrapper {
-width: 40px;
-height: 40px;
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
+.event-past {
+  background-color: #bdbdbd4a !important;
+}
+.btn-recreate {
+  background-color: #FAFAFA;
+  padding: 5px 20px;
+  font-size: .9em;
+  border-radius: 10px;
+  margin-right: 10px;
 }
 
-.owl-prev .owl-nav-wrapper svg, .owl-prev .owl-nav-wrapper i {
-color: #ffffff;
-width: 20px;
-height: 20px;
-}
-.owl-stage {
-  display: flex;
+.btn-recreate:hover {
+  background-color: #cdc7c7;
 }
 
-.owl-next {
-width: 100px;
-height: 100%;
-position: absolute;
-top: 0;
-right: 0;
-display: block !important;
-background-image: linear-gradient(to right, transparent, #F4F7FD) !important;
-}
-
-.owl-next .owl-nav-wrapper {
-width: 40px;
-height: 40px;
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
-margin-left: auto;
-}
-
-.owl-next .owl-nav-wrapper svg, .owl-next .owl-nav-wrapper i {
-color: #ffffff;
-width: 20px;
-height: 20px;
-}
-
-.owl-dots {
-text-align: center;
-margin-top: .5rem;
-}
-
-.owl-dots .owl-dot {
-width: 10px;
-height: 10px;
-border-radius: 100%;
-background: #cbcbcb !important;
-margin-right: 5px;
-display: inline-block;
-}
-
-.owl-dots .owl-dot.active {
-background: #757575 !important;
+.event-content-past {
+  color: #6e747b;
+  margin-bottom: 0.625rem;
+  font-size: 16px;
+  font-weight: 300;
 }
 
 .text-primary, .task-list-wrapper .completed .remove {
   color: #4e73e5 !important;
 }
+
 
 #wrapper {
   text-align: center;
@@ -619,9 +653,101 @@ background: #757575 !important;
       bottom: -70px;
       right: -63px;
     }
+   
+
+@media (min-width: 667px) and (max-width: 992px) {
+  .width-index {
+    width: 50%;
+  }
+  .logo-index {
+    width: 5rem;
+    height: auto;
+  }
+  .explain-index {
+    background: url(../images/morado-cielo.png) no-repeat center center;
+    background-size: cover;
+    padding: 1.4em 0 1.4em 3em;
+    height: 39vh;
+    margin-left: -2em;
+    color: white;
+  }
+
+  .explain-index-text {
+    margin: 2em auto;
+    color: white;
+    font-size: 1.5rem;
+  }
+  
+  .explain-index-text > i {
+    margin-right: 20px;
+    font-size: 1.5em;
+  }
+
+  #grid-index{
+    display: grid;
+  }
+  #grid-second {
+    order:2;
+  }
+
+  .text-index {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    margin-bottom: 1.5em;
+  }
+
+  .btn-create {
+    background-color: #912180;
+    padding: 10px 40px;
+    border: 1px solid white;
+    color: white;
+    font-size: 1.3rem;
+    border-radius: 30px;
+    width: 22em;
+    font-weight: bold;
+  }
+  
+  .btn-login {
+    padding: 10px 40px;
+    background-color: transparent;
+    border: 1px solid #912180;
+    color:#912180;
+    font-size: 1.3rem;
+    border-radius: 30px;
+    width: 22em;
+    font-weight: bold;
+  }
+  
+  
+  .btn-login:hover {
+    background-color: #9121804a;
+    color: #912180;
+  }
+  .btn-create:hover {
+    background-color: #5e1553;
+    color: white;
+  }
+  .d-index {
+    font-size: 1rem;
+    font-weight: 800;
+    margin: 0.8em auto;
+  }
+   
+  .title-index {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 1em auto;
+  }
 
 
-@media (max-width: 769px ){
+
+}
+
+
+@media (max-width: 668px ){
   #cloud:after {
     width: 100px; height: 100px;
     top: -50px; left: 50px;
@@ -659,66 +785,93 @@ background: #757575 !important;
     bottom: 50%;
   }
 
-.logo-index {
-  width: 7rem;
-  height: auto;
-  margin: 30px 40px;
-}
 
-.title-index {
-  font-size: 3rem;
-  font-weight: bold;
-}
-.d-index {
-  font-size: 1rem;
-  margin: 6em 1em 1em;
-  font-weight: bold;
-}
 
-.btn-create {
-  background-color: #912180;
-  padding: 8px 40px;
-  border: 1px solid white;
-  color: white;
-  font-size: 1.5rem;
-  border-radius: 30px;
-  width: 90%;
-  font-weight: bold;
-}
+  .logo-index {
+    width: 5rem;
+    height: auto;
+  }
+  .explain-index {
+    background: url(../images/morado-cielo.png) no-repeat center center;
+    background-size: cover;
+    padding: 1.4em 0 1.4em 3em;
+    height: 39vh;
+    margin-left: -2em;
+    color: white;
+  }
 
-.btn-login {
-  padding: 8px 40px;
-  background-color: transparent;
-  border: 1px solid #912180;
-  color:#912180;
-  font-size: 1.5rem;
-  border-radius: 30px;
-  width: 90%;
-  font-weight: bold;
-}
+  .explain-index-text {
+    margin: 2em auto;
+    color: white;
+    font-size: 1.5rem;
+  }
+  
+  .explain-index-text > i {
+    margin-right: 20px;
+    font-size: 1.5em;
+  }
 
-.btn-login:hover {
-  background-color: #9121804a;
-  color: #912180;
-}
-.btn-create:hover {
-  background-color: #5e1553;
-  color: white;
-}
+  #grid-index{
+    display: grid;
+  }
+  #grid-second {
+    order:2;
+  }
 
-.explain-index {
-  background-color : #5c2385;
-  padding: 1em 0 1em 3em;
-  margin: 5em 0;
-}
-.explain-index-text {
-  margin: 2em auto;
-  color: white;
-  font-size: 1.5rem;
-}
-.explain-index-text > i {
-  margin-right: 20px;
-}
+  .text-index {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    margin-bottom: 1.5em;
+  }
+
+  .btn-create {
+    background-color: #912180;
+    padding: 10px 40px;
+    border: 1px solid white;
+    color: white;
+    font-size: 1.3rem;
+    border-radius: 30px;
+    width: 22em;
+    font-weight: bold;
+  }
+  
+  .btn-login {
+    padding: 10px 40px;
+    background-color: transparent;
+    border: 1px solid #912180;
+    color:#912180;
+    font-size: 1.3rem;
+    border-radius: 30px;
+    width: 22em;
+    font-weight: bold;
+  }
+  
+  
+  .btn-login:hover {
+    background-color: #9121804a;
+    color: #912180;
+  }
+  .btn-create:hover {
+    background-color: #5e1553;
+    color: white;
+  }
+  .d-index {
+    font-size: 1rem;
+    font-weight: 800;
+    margin: 0.8em auto;
+  }
+   
+  .title-index {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 1em auto;
+  }
+  .width-index {
+    width: 100%;
+  }
 
 .login {
   margin: 3em 1em;
