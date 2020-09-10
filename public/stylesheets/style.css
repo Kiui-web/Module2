@@ -40,8 +40,27 @@ ol > li:before {
   text-align: right;
   content: counter(item) ".";
 }
+
 /* continue detailsevent */
 
+#name-assistant{
+  padding-left: 15px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+}
+
+.name-assistant-delete{
+  flex-grow: 1;
+  padding-left: 30px;
+}
+
+.delete-assistant{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2px;
+  border-bottom: .2px solid #eee;
+}
 .btn-delete {
   background-color: red;
   color: white;
@@ -57,6 +76,7 @@ ol > li:before {
   background-color:#EEE;
   padding-bottom: 1.5em;
   margin-bottom: -1em;
+  height: 97vh;
 }
 
 
@@ -125,7 +145,7 @@ ol > li:before {
 }
 
 .container-detail, .container-assistants {
-  margin: 2em 0 2em;
+  margin: 2em 0 0em;
 }
 
 .container-detail > h3, .container-assistants > h3 {
@@ -143,6 +163,14 @@ ol > li:before {
   border-radius: 10px;
   margin-right: 10px;
 }
+.btn-delete {
+  background-color : #f44336;
+}
+
+.btn-delete:hover {
+  background-color : #bd180c!important;
+  color: white;
+}
 
 .btn-assistant:hover {
   background-color: rgb(169, 167, 167);
@@ -158,7 +186,6 @@ ol > li:before {
   background-color: #00bb2d;
   border-radius: 50px;
   color: white;
-  box-shadow: 1px 1px 5px lightgray;
 }
 
 .btn-whatsapp:hover {
@@ -379,8 +406,9 @@ ol > li:before {
   font-size: .9em;
 }
 
-.btn-events .btn-whatsapp {
+.btn-events .btn-whatsapp, .btn-events .btn-delete {
   padding: 1px 7px;
+  box-shadow: 1px 1px 5px lightgray;
 }
 
 
@@ -653,7 +681,143 @@ ol > li:before {
       bottom: -70px;
       right: -63px;
     }
-   
+
+/* Modal events */
+    #name-user {
+      padding: 10px 24px;
+      border: .5px solid lightgray;
+      border-radius: 15px;
+    }
+
+    .btn-name{
+      background-color: transparent;
+      border: 1px solid #912180;
+      color:#912180;
+      border-radius: 15px;
+      margin-top: 1em;
+      float: right;
+    }
+    .btn-name:hover {
+      background-color: #9121804a;
+      color: #912180;
+    }
+
+    .modal-title {
+      font-weight: 300;
+    }
+
+    .modal-dialog {
+      width: fit-content;
+      border-radius: 15px;
+
+    }
+    #kiui {
+      color: #912180;
+      font-weight: 400;
+    }
+
+
+
+    .modal-content {
+      border: 0;
+      padding: 10px;
+      box-shadow: 1px 1px 5px #eee;
+    }
+    #errorName {
+      color:red;
+      font-size: 0.8em;
+      font-weight: 300;
+      margin: 10px 0 0 12px;
+    }
+
+    
+
+/* end modal */
+  /* modal confirmation */
+  .modal-confirm {		
+		color: #636363;
+		width: 400px;
+		margin: 30px auto;
+	}
+	.modal-confirm .modal-content {
+		padding: 20px;
+		border-radius: 15px;
+		border: none;
+		font-size: 14px;
+	}
+	.modal-confirm .modal-header {
+		border-bottom: none;   
+    position: relative;
+    flex-direction: column;
+    align-items:center;
+	}
+	.modal-confirm h4 {
+		text-align: center;
+		font-size: 26px;
+		margin: 30px 0 -10px;
+	}
+	.modal-confirm .close {
+        position: absolute;
+		top: -5px;
+		right: -2px;
+	}
+	.modal-confirm .modal-body {
+		color: #999;
+	}
+	.modal-confirm .modal-footer {
+		border: none;
+		text-align: center;		
+		border-radius: 5px;
+		font-size: 13px;
+		padding: 10px 15px 25px;
+	}
+		
+	.modal-confirm .icon-box {
+		width: 80px;
+		height: 80px;
+		margin: 0 auto;
+		border-radius: 50%;
+		z-index: 9;
+		text-align: center;
+		border: 3px solid #f15e5e;
+	}
+	.modal-confirm .icon-box i {
+		color: #f15e5e;
+		font-size: 46px;
+		display: inline-block;
+		margin-top: 13px;
+	}
+    .modal-confirm .btn {
+        color: #fff;
+        border-radius: 4px;
+		background: #60c7c1;
+		text-decoration: none;
+		transition: all 0.4s;
+        line-height: normal;
+		min-width: 120px;
+        border: none;
+		min-height: 40px;
+		border-radius: 3px;
+		margin: 0 5px;
+		outline: none !important;
+    }
+	.modal-confirm .btn-info {
+        background: #c1c1c1;
+    }
+    .modal-confirm .btn-info:hover, .modal-confirm .btn-info:focus {
+        background: #a8a8a8;
+    }
+    .modal-confirm .btn-danger {
+        background: #f15e5e;
+        display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-confirm .btn-danger:hover, .modal-confirm .btn-danger:focus {
+        background: #ee3535;
+    }
+
+  /* end confirmation */
 
 @media (min-width: 667px) and (max-width: 992px) {
   .width-index {
@@ -698,6 +862,11 @@ ol > li:before {
     height: 60vh;
     margin-bottom: 1.5em;
   }
+  .btn-assistant {
+
+    padding: 10px 10px;
+    margin-right: 6px;
+  }
 
   .btn-create {
     background-color: #912180;
@@ -740,10 +909,8 @@ ol > li:before {
     font-size: 3rem;
     font-weight: bold;
     margin: 1em auto;
+  
   }
-
-
-
 }
 
 
@@ -752,6 +919,10 @@ ol > li:before {
     width: 100px; height: 100px;
     top: -50px; left: 50px;
     border-radius: 100px;
+  }
+
+  .btn-delete {
+    margin: 5px 0;
   }
 
   .nube {
@@ -847,6 +1018,14 @@ ol > li:before {
     border-radius: 30px;
     width: 22em;
     font-weight: bold;
+  }
+
+  .btn-assistant {
+    margin-right: 6px;
+  }
+
+  #name-assistant {
+    padding-left: 8px;
   }
   
   

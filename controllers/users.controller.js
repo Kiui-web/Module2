@@ -66,3 +66,23 @@ module.exports.profile = (req, res, next) => {
         .catch(e => next(e))
 }
 
+module.exports.addName = (req, res, next) => {
+    console.log(req.body);
+    const {idUser, nameUser} = req.body
+
+    User.findByIdAndUpdate(idUser, { $set : { "name" : nameUser}})
+        .then(user => {
+            
+            User.findById(idUser)
+                .then(user => {
+                    res.json(user)
+                })
+                .catch(next)
+            
+        })
+        .catch(next)
+
+
+
+}
+

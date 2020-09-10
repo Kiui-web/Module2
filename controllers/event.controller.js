@@ -20,7 +20,7 @@ module.exports.detailEvent = (req, res, next) => {
         shortUrl.short(googleMaps, function(err, url){
           googleMaps = url
         });
-        console.log(eventDetail);
+
       
       const event = {
         "_id": eventDetail._id,
@@ -37,7 +37,7 @@ module.exports.detailEvent = (req, res, next) => {
         "month": mNames,
         "googleMapsUrl" : googleMaps
       }
-      console.log(event);
+      
       res.render('event/eventDetails', {event, user: req.session.userId})
     })
   .catch(next);
@@ -50,7 +50,6 @@ module.exports.createEvent = (req, res, next) => {
 
 module.exports.saveEvent = (req, res, next) => {
   const {title, date, duration, description, latitude, longitud, location} = req.body
-  console.log(req.session);
  const event = new Event ({
   "user": req.session.userId,
   "title" : title,
@@ -60,8 +59,7 @@ module.exports.saveEvent = (req, res, next) => {
   "location": {
     "coordinates": [latitude, longitud],
     "name": location
-  },
-  "assistants" : req.session.userId
+  }
  })
 
  event.save()
@@ -82,7 +80,6 @@ module.exports.saveEvent = (req, res, next) => {
 module.exports.share = (req, res, next) => {
  Event.findById(req.params.id)
     .populate('user')
-    .populate('assistants')
     .then(event => {
         const year = event.date.toISOString().slice(0, 4)
         const hour = event.date.toISOString().slice(11, 16)
@@ -94,40 +91,47 @@ module.exports.share = (req, res, next) => {
         const duration = event.duration
         const latitud = event.location.coordinates[0]
         const longitud = event.location.coordinates[1]
+        const direction = event.location.name
         let googleMaps = `https://maps.google.com/?q=${latitud},${longitud}&z=17&t=m`
+        let googleMapsNew = ""
+        let assistant = ""
 
+        for (let i = 1; i <= event.assistants.length; i++) {
+          assistant += `*${i}.* ${event.assistants[i - 1]}\n`
+        }
+
+        console.log(event.user.number);
         shortUrl.short(googleMaps, function(err, url){
-          googleMaps = url
-        });
+          googleMapsNew = url
+        
+const text = `
+*${title}*
 
-        const text = `
-          *${title}*
+${description}
 
-          ${description}
-
-          *Apuntate aquí* 
+*Apuntate aquí* 
           
-          *Día: *${day} de ${mNames} de ${year}
-          *Hora: *${day}
-          *Lugar: *
-          ${googleMaps}
+*Día: *${day} de ${mNames} de ${year}
+*Hora: *${day}
+*Lugar: *${direction}
+${googleMapsNew}
 
-          *Duración * ${duration} horas
+*Duración * ${duration} horas
 
-          Asistentes:
-
+Asistentes:
+${assistant}
         `
+            const textFormat = encodeURI(text)
+            const whasapUrl = `https://wa.me/?text=${textFormat}`
 
+            console.log(whasapUrl);
 
+            // shortUrl.short(whasapUrl, function(err, urlWhasap){
+            //   // res.redirect(urlWhasap)
+            // });
 
-
-        const whasapUrl = `https://api.whatsapp.com/send?phone=${user.number}&text=`
-
-
-        res.redirect(whasapUrl)
-
-
-    })
+        })
+      })
     .catch(next)
  }
 
@@ -136,7 +140,7 @@ module.exports.eventsAll = (req, res, next) => {
   
   Event.find({ "user" : req.session.userId})
       .populate('user')
-      .populate('assistant.creator')
+      .populate('assistant')
       .then(events => {
         if (events) {
          
@@ -184,10 +188,19 @@ module.exports.joinEvent = (req, res, next) => {
   console.log("Entrando en joinevent");
   res.render('event/joinevent')
 }
+module.exports.deleteEvent = (req, res, next) => {
+  const idEvent = req.params.id
+
+  console.log(idEvent);
+    Event.findByIdAndDelete(idEvent)
+      .then(event => {
+        res.redirect('/events')
+      })
+      .catch(next)
+}
 
 module.exports.add = (req, res, next) => {
   const {idEvent, name} = req.body
-  console.log(name);
   Event.findByIdAndUpdate(idEvent , {$push: {"assistants" : name }})
       .then (event => {
 
@@ -197,6 +210,27 @@ module.exports.add = (req, res, next) => {
               })
               .catch(next)
         
+      })
+      .catch(next)
+}
+
+
+module.exports.delete = (req, res, next) => {
+  const {idEvent, number} = req.body
+  Event.findById(idEvent)
+      .then (events => {
+        const eventAssistant = events.assistants.filter((event, index) => {
+          return index !== number
+       })
+
+       events.assistants = eventAssistant
+
+        events.save()
+        .then(event => {
+          res.json(event)
+        })
+        .catch(next)
+
       })
       .catch(next)
 }
