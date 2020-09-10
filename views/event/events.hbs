@@ -1,3 +1,7 @@
+
+
+
+
 <div class="background-gray">
 <div class="container">
 <h3 class="title-events">Tus proximos eventos</h3>
@@ -36,6 +40,7 @@
                             <div class="btn-events">
                                 <a class="btn btn-assistant" href="/event/{{this._id}}">Ver detalles</a>
                                 <a href="/share/{{this._id}}" class="btn btn-whatsapp"><i class="fa fa-whatsapp fa-1x" aria-hidden="true"></i></a>
+            
                             </div>
                         </div>
                     </div>
@@ -81,7 +86,7 @@
                             <h5><a href="/event/{{this._id}}" class="event-title">{{this.title}}</a></h5>
                             <p class="event-content-past">{{this.description}}</p>
                             <div class="btn-events">
-                                <a class="btn btn-recreate" href="">Recrear evento</a>
+                                <a class="btn btn-recreate" href="">Repetir evento</a>
                             </div>
                         </div>
                     </div>
@@ -92,4 +97,29 @@
 </div>
 </div>
 
+
+
+
+{{#if user.name}}
+{{else}}
+<div class="modal fade" id="nameUser" data-keyboard='false' data-backdrop='static' tabindex="-1" role="dialog" aria-labelledby="nameUserLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="nameUserLabel">En <span id="kiui">kiui</span> estamos deseando saber tu nombre</h5>
+      </div>
+      <div class="modal-body">
+          <input type="text" placeholder="Introduce tu nombre" id="name-user" name="name-user">
+          <div id="errorName"></div>
+          <button type="button" id="{{user._id}}" onclick="saveNameUser(event)" class="btn btn-name">Guardar cambios</button>
+      </div>
+    </div>
+    </div>
+</div>
+<script>
+    $( document ).ready(function() {
+            $('#nameUser').modal('show')
+        }); 
+</script>
+{{/if}}
 
