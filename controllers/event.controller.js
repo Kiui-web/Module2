@@ -96,39 +96,53 @@ module.exports.share = (req, res, next) => {
         let googleMapsNew = ""
         let assistant = ""
 
+        const urlAssistant = `http://localhost:3000/event/${event._id}`
+
         for (let i = 1; i <= event.assistants.length; i++) {
-          assistant += `*${i}.* ${event.assistants[i - 1]}\n`
+          //assistant += `*${i}.* ${event.assistants[i - 1]}\n`
+          assistant += '*' + i + '.* ```' + event.assistants[i - 1] + '```\n'
         }
 
         console.log(event.user.number);
         shortUrl.short(googleMaps, function(err, url){
           googleMapsNew = url
         
-const text = `
-*${title}*
+// const text = `
+// 🍺🔊🎉⚽🍻🎁🎊🥃🥁🍾🍰
 
-${description}
 
-*Apuntate aquí* 
+// *${title}*
+
+// ${description}
+
+// *Apuntate aquí*: ${urlAssistant}
           
-*Día: *${day} de ${mNames} de ${year}
-*Hora: *${day}
-*Lugar: *${direction}
-${googleMapsNew}
+// *Día:* ${day} de ${mNames} de ${year}
+// *Hora:* ${day}
+// *Lugar:* ${direction}
+// ${url}
 
-*Duración * ${duration} horas
+// *Duración:* ${duration} horas
 
-Asistentes:
-${assistant}
-        `
-            const textFormat = encodeURI(text)
+// Asistentes:
+// ${assistant}
+        
+//   Creado por kiui
+//         `
+const text = '🍺🔊🎉⚽🍻🎁🎊🥃🥁🍾🍰\n\n*' + title + '*\n\n```' + description + '```\n\n*Apuntate aquí:* ' +
+            urlAssistant + '\n\n*Día:* ' + day + ' de ' + mNames + ' de ' + year + '\n*Hora:* ' + hour +
+            '\n*Lugar:* ' + direction + '\n' + url + '\n\n*Duración:* ' + duration + ' horas\n\n_Asistentes:_\n\n' +
+            assistant + '\n_Creado por kiui_';
+            
+            
+
+console.log(text);
+
+            const textFormat = encodeURIComponent(text)
             const whasapUrl = `https://wa.me/?text=${textFormat}`
 
-            console.log(whasapUrl);
-
-            // shortUrl.short(whasapUrl, function(err, urlWhasap){
-            //   // res.redirect(urlWhasap)
-            // });
+            console.log(url);
+            res.redirect(whasapUrl)
 
         })
       })

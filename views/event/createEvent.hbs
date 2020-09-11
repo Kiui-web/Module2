@@ -1,44 +1,122 @@
-
-
-<form action="/event" method="POST">
-
-  <div class="form-group">
-    <label for="title">Nombre del evento</label>
-    <input type="text" class="form-control" id="title" name="title" required>
-  </div>
- <div class="form-group">
-    <label for="date">Fecha del evento</label>
-    <input type="datetime-local" class="form-control" min="{{dateNow}}" id="date" name="date" required>
-  </div>
-   <div class="form-group">
-    <label for="duration">Duración</label>
-    <input type="number" value="1" class="form-control" id="duration" name="duration" required>
-  </div>
-   <div class="form-group">
-    <label for="description">Descripcion</label>
-    <textarea class="form-control" id="description" name="description" required></textarea>
-  </div>
-    <div id="pac-container">
-        <input id="pac-input" name="location" type="text" placeholder="Enter a location" />
-      </div>
-    </div>
-    <div class="pac-location">
-      <input type="hidden" name="latitude" id="latitude">
-      <input type="hidden" name="longitud" id="longitud">
-    </div>
-      
-    <div id="map" name="map" ></div>
+<div class="container-fluid">
+    <div class="row">
+    
+        <div class="col-md-4 form-create" id="grid-second">
         
-    <div class="pac-card" id="pac-card">
-      <div id="infowindow-content">
-      <img src="" width="16" height="16" id="place-icon" />
-      <span id="place-name" class="title"></span><br />
-      <span id="place-address"></span>
-    </div>
-    </div>
+          <h5 id="h5-create">Detalles del evento</h5>
+            <div class="text-left">
+
+              <form action="/event" method="POST">
+
+                <div class="form-group">
+                  <label for="title">Nombre del evento</label>
+                  <input type="text" class="form-control" id="title" name="title" onkeyup="nameWhassap()" onchange="nameWhassap()" required>
+                </div>
+              <div class="form-group">
+                  <label for="date">Fecha del evento</label>
+                  <input type="datetime-local" class="form-control" min="{{dateNow}}" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                  <label for="duration">Duración</label>
+                  <input type="number" value="1" class="form-control" id="duration" name="duration" required>
+                </div>
+                <div class="form-group">
+                  <label for="description">Descripcion</label>
+                  <textarea class="form-control" id="description" name="description" required></textarea>
+                </div>
+
+
+                  <div class="form-map form-group none">
+            
+                          <label for="pac-input">Introduce la localización</label>
+                          <input id="pac-input" class="form-control mb-2" name="location" type="text" placeholder=" " />
+                
+                    <div class="pac-location">
+                      <input type="hidden" name="latitude" id="latitude">
+                      <input type="hidden" name="longitud" id="longitud">
+                    </div>
+                  
+                    <div id="map" name="map" ></div>
+                  </div>
+                  
+                  </div>
+                   <div class="text-center">
+                    <button disabled type="submit" class="btn btn-create">
+                      Continuar
+                    </button>
+                  </div>
+
+                
+               
+              </form>
+
+     
+           </div>
   
-  <button type="submit" class="btn btn-primary w-100">
-    Crear evento
-  </button>
-</form>
+    <div class="p0 col-md-8">
+      
+            <div class="img-iphone background-gray">
+                <div id="iphone">
+                {{!-- <img src="./images/iphone.png" alt="iphone" id="iphone"> --}}
+                  <div id="chat-whassap">
+                    <div>🍺🔊🎉⚽🍻🎁🎊🥃🥁🍾🍰</div>
+                    <br>
+                    <div id="title-whassap"></div>
+                    <br>
+                    <div id="description-whassap"></div>
+                    <br>
+                    <div><b>Apuntate aquí: </b><span> </span></div>
+                    <br>
+                    <div><b>Día: </b><span id="day"></span></div>
+                    <div><b>Hora: </b><span id="hour"></span></div>
+                    <div><b>Lugar: </b><span id="direction"></span></div>
+                    <div id="url-whassap"></div>
+                    <br><br>
+                    <div><i>Creado por kiui</i></div>
+
+                  </div>
+                </div>
+
+           </div>
+ 
+    </div>
+ 
+      </div>
+</div>
+
+
+
+
+<script>
+  function nameWhassap() {
+    const name = document.getElementById('title').value
+    const titleWhassap = document.getElementById('title-whassap')
+
+    titleWhassap.innerText = name
+
+  }
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

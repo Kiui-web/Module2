@@ -1,5 +1,5 @@
 
-function addAssistant(e) {
+function addAssistant(e, user) {
 	const idEvent = e.target.id
 	const nameBad = document.getElementById('name-assistant').value
 	const ol = document.getElementById('assistant-event')
@@ -11,7 +11,7 @@ function addAssistant(e) {
 			.then(res => {
 				document.getElementById('name-assistant').value = ''
 				const arrAssistants = res.data.assistants;
-				createLiLastPosition(arrAssistants, idEvent, ol)
+				createLiLastPosition(arrAssistants, idEvent, ol, user)
 				numberAssistant.innerText = arrAssistants.length
 				if (arrAssistants.length === 1) {
 					const p = document.getElementById('no-assistants')
@@ -89,7 +89,7 @@ function createLi (arrAssistants, idEvent, ol) {
 	}
 }
 
-function createLiLastPosition (arrAssistants, idEvent, ol) {
+function createLiLastPosition (arrAssistants, idEvent, ol, user) {
 	const pos = arrAssistants.length
 	const li = document.createElement('li')
 	li.setAttribute('id', pos)
@@ -100,14 +100,16 @@ function createLiLastPosition (arrAssistants, idEvent, ol) {
 	div.innerText = arrAssistants.slice(-1)[0]
 	ol.appendChild(li)
 	const button = document.createElement('button')
-	button.classList.add('btn-delete')
-	button.setAttribute('id', idEvent)
-	button.setAttribute('onclick', `deleteAssistant(event, ${pos - 1}, "${idEvent}")`)
-	const i = document.createElement('i')
-	i.classList.add('fa')
-	i.classList.add('fa-trash-o')
-	button.appendChild(i)
-	li.appendChild(button)
+	if (user) {
+		button.classList.add('btn-delete')
+		button.setAttribute('id', idEvent)
+		button.setAttribute('onclick', `deleteAssistant(event, ${pos - 1}, "${idEvent}")`)
+		const i = document.createElement('i')
+		i.classList.add('fa')
+		i.classList.add('fa-trash-o')
+		button.appendChild(i)
+		li.appendChild(button)
+	}
 }
 
 

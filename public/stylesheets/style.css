@@ -15,6 +15,15 @@ body,html {
     width: 50%;
   }
 
+  /* Create Event */
+
+
+
+
+
+
+  /* End Create Event */
+
   /* event Detail */
 
  /* count li index */
@@ -226,21 +235,6 @@ ol > li:before {
     padding: 5px 11px;
   }
 
-  
-  #pac-input {
-    background-color: #fff;
-    font-family: Roboto;
-    font-size: 15px;
-    font-weight: 300;
-    margin-left: 12px;
-    padding: 0 11px 0 13px;
-    text-overflow: ellipsis;
-    width: 400px;
-  }
-  
-  #pac-input:focus {
-    border-color: #4d90fe;
-  }
   footer {
     position: relative;
     bottom: 1em;
@@ -339,32 +333,115 @@ ol > li:before {
 
  /* end Index */
 
-.login {
+/* chat whassap */
+  #chat-whassap {
+    background-color: #DCF8C6;
+    position: relative;
+    padding: 6px;
+    border-radius: 5px;
+    left: 5.5em;
+    width: 61%;
+    top: 15em;
+  }
+  #title-whassap {
+    font-weight: bolder;
+    width: 61%;
+  }
+
+
+/* end chat */
+
+ .login {
   margin: 3em 1em;
+}
+#h5-create {
+  margin: 2em 1em;
+  font-weight: 600;
 }
 
 .form-group {
-  background-color:#EEE;
-  border-radius: 2px;
+  
+  border: 1px solid #EEE;
+  border-radius: 10px;
   margin: 2em 1em 0;
+  padding: 5px 4px;
 }
 
-.form-group > input{
-  border: 0;
-  border-bottom: 1px solid black;
-  background-color:#EEE;
-  border-radius: 2px;
-  font-size: 2.5rem;
-  padding: .5em 0 .5em 1em;
+.none {
+   display: none;
 }
+
+#iphone {
+  width: 20em;
+    height: 40em;
+    background: url(../images/iphone.png) no-repeat;
+    background-size: contain;
+}
+
+.img-iphone {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  height: 96vh;
+}
+.p0 {
+  padding: 0 !important;
+}
+
+
+.form-create {
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  height: 96vh;
+}
+
+.form-create .btn-create {
+  margin-top: 2em;
+    border-radius: 15px;
+    width: 80%;
+}
+
+.form-map {
+  padding: 0 !important;
+  margin-bottom: 2em;
+  padding-left: 4px;
+}
+
+.form-group > textarea {
+  resize: none;
+  height: 5em;
+}
+
+.form-group > #map {
+  height: 50vh;
+  width: 100%;
+  border-radius: 0 0 10px 10px;
+}
+
+.form-group > input, .form-group > textarea{
+  border: 0;
+  border-radius: 10px;
+}
+
+.form-group > input:focus {
+  border: 0;
+}
+
+
+.form-group:focus{
+  border: 1px solid #912180;
+}
+
+.form-group > label:focus {
+  color :#912180;
+}
+
 .invalid-feedback{
-  font-size: 2.5rem;
   padding: .2em 0 .2em 1em;
 }
 
 .form-group > label {
   border:0;
-  font-size: 2.5rem;
   padding: .5em 0 .2em 1em;
 
 }
@@ -819,6 +896,16 @@ ol > li:before {
 
   /* end confirmation */
 
+  .bg-login {
+    background: url(../images/fondo-login.svg) no-repeat;
+    height: 95vh;
+    background-size: cover;
+    margin: 0 0 -5em -5em;
+  }
+  .login h3 {
+    color: white;
+  }
+
 @media (min-width: 667px) and (max-width: 992px) {
   .width-index {
     width: 50%;
@@ -924,39 +1011,7 @@ ol > li:before {
   .btn-delete {
     margin: 5px 0;
   }
-
-  .nube {
-    display: flex;
-    align-items:center;
-  }
   
-  #cloud:before {
-    width: 200px; height: 200px;
-    top: -90px; right: 50px;
-    border-radius: 200px;
-  }
-  #cloud:after, #cloud:before {
-    content: '';
-    position: absolute;
-    background: #FFF;
-    z-index: -1
-  }
-  #cloud {
-    width: 26em; 
-    height: 48em;
-    background: #0094D5;
-    background: linear-gradient(top, #0094D5 5%, #DFF 100%);
-    background: -webkit-linear-gradient(top, #FFF 1%, #0094D5 100%);
-    background: -moz-linear-gradient(top, #0094D5 5%, #0094D5 100%);
-    background: -ms-linear-gradient(top, #0094D5 5%, #0094D5 100%);
-    background: -o-linear-gradient(top, #0094D5 5%, #0094D5 100%);
-    border-radius: 100px;
-    position: absolute;
-    top: 19%;
-    bottom: 50%;
-  }
-
-
 
   .logo-index {
     width: 5rem;
@@ -1053,8 +1108,17 @@ ol > li:before {
   }
 
 .login {
-  margin: 3em 1em;
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
 }
+.bg-login {
+  height: 95vh;
+  margin: 0 0 0em 0em;
+}
+
 }
 
 .navbar-login

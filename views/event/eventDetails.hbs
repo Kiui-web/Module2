@@ -22,7 +22,7 @@
         <div class="row" id="max-width-event-detail">
             <input type="text" class="mr-2" name="name-assistant" id="name-assistant" placeholder="Introduce su nombre">
             <div class="button-event">
-              <button class="btn btn-assistant" name="button-assistant" id="{{event._id}}" type="submit" onclick="addAssistant(event)"><i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i>Asistir</button>
+              <button class="btn btn-assistant" name="button-assistant" id="{{event._id}}" type="submit" onclick="addAssistant(event, '{{user}}')"><i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i>Asistir</button>
               {{#if_eq event.user._id user}}
               <a class="btn btn-assistant" id="{{event._id}}" type="submit"><i class="fa fa-pencil mr-2" aria-hidden="true"></i>Editar</a>
               {{/if_eq}}
