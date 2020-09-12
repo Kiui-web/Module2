@@ -45,8 +45,6 @@ function deleteAssistant(e, number, idEvent) {
 					p.setAttribute('id', 'no-assistants')
 					const divContainer = document.getElementById('container-assistants')
 					p.innerText = "No tiene asistentes en este evento."
-					console.log(p);
-					console.log(divContainer);
 					divContainer.appendChild(p)
 				}
 			})

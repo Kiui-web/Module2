@@ -19,6 +19,8 @@ router.post('/event', eventController.saveEvent)
 router.get('/joinevent', eventController.joinEvent)
 router.get('/share/:id', eventController.share)
 router.get('/delete/:id', eventController.deleteEvent)
+router.get('/edit/:id', eventController.editEvent)
+router.post('/edit/:id', eventController.modifyEvent)
 
 router.post('/assistant/add', eventController.add)
 router.post('/assistant/delete', eventController.delete)

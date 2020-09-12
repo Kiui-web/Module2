@@ -249,6 +249,38 @@ module.exports.delete = (req, res, next) => {
       .catch(next)
 }
 
+module.exports.editEvent = (req, res, next) => {
+  const idEvent = req.params.id
+  
+  Event.findById(idEvent)
+   .then(event => {
+    const dateNow = new Date().toISOString().substr(0, 16);
+    const dateEvent = event.date.toISOString().substr(0, 16);
+    console.log(event.description);
+    res.render('event/createEvent', {dateNow, event, dateEvent})
+   })
+   .catch(next)
+}
+
+module.exports.modifyEvent = (req, res, next) => {
+  const idEvent = req.params.id
+  const body = req.body
+
+  Event.findById(idEvent)
+    .then(event => {
+
+      event.set(body)
+      event.save()
+       .then(event => {
+            res.redirect(`/event/${event._id}`)
+       })
+       .catch(e => console.log(e))
+
+    })
+    .catch(next)
+
+}
+
 
 function monthName (month) {
   let name = ""

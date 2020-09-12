@@ -326,6 +326,7 @@ ol > li:before {
     font-size: 3rem;
     font-weight: bold;
     margin: 1em auto;
+    height: 16vh;
   }
   .width-index {
     width: 60%;
@@ -336,17 +337,25 @@ ol > li:before {
 /* chat whassap */
   #chat-whassap {
     background-color: #DCF8C6;
-    position: relative;
+    position: absolute;
     padding: 6px;
     border-radius: 5px;
-    left: 5.5em;
-    width: 61%;
-    top: 15em;
+    width: 75%;
+    bottom: 2em;
+    font-size: .8em;
+    right: 1em;
   }
   #title-whassap {
     font-weight: bolder;
-    width: 61%;
   }
+
+  #icons-whassap {
+    font-size: 1.3em;
+  }
+  .monospace {
+    font-family: monospace;
+  }
+
 
 
 /* end chat */
@@ -376,6 +385,15 @@ ol > li:before {
     height: 40em;
     background: url(../images/iphone.png) no-repeat;
     background-size: contain;
+}
+
+#background-whassap {
+  position: relative;
+    width: 84%;
+    left: 1.6em;
+    top: 6em;
+    height: 72%;
+    overflow-y: hidden;
 }
 
 .img-iphone {
@@ -996,6 +1014,7 @@ ol > li:before {
     font-size: 3rem;
     font-weight: bold;
     margin: 1em auto;
+    height: 32vh;
   
   }
 }
@@ -1006,6 +1025,10 @@ ol > li:before {
     width: 100px; height: 100px;
     top: -50px; left: 50px;
     border-radius: 100px;
+  }
+
+  .img-iphone {
+    display: none;
   }
 
   .btn-delete {
@@ -1102,6 +1125,7 @@ ol > li:before {
     font-size: 3rem;
     font-weight: bold;
     margin: 1em auto;
+    height: 32vh;
   }
   .width-index {
     width: 100%;
