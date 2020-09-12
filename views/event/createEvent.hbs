@@ -1,44 +1,257 @@
-
-
-<form action="/event" method="POST">
-
-  <div class="form-group">
-    <label for="title">Nombre del evento</label>
-    <input type="text" class="form-control" id="title" name="title" required>
-  </div>
- <div class="form-group">
-    <label for="date">Fecha del evento</label>
-    <input type="datetime-local" class="form-control" min="{{dateNow}}" id="date" name="date" required>
-  </div>
-   <div class="form-group">
-    <label for="duration">Duración</label>
-    <input type="number" value="1" class="form-control" id="duration" name="duration" required>
-  </div>
-   <div class="form-group">
-    <label for="description">Descripcion</label>
-    <textarea class="form-control" id="description" name="description" required></textarea>
-  </div>
-    <div id="pac-container">
-        <input id="pac-input" name="location" type="text" placeholder="Enter a location" />
-      </div>
-    </div>
-    <div class="pac-location">
-      <input type="hidden" name="latitude" id="latitude">
-      <input type="hidden" name="longitud" id="longitud">
-    </div>
-      
-    <div id="map" name="map" ></div>
+<div class="container-fluid">
+    <div class="row">
+    
+        <div class="col-md-4 form-create">
         
-    <div class="pac-card" id="pac-card">
-      <div id="infowindow-content">
-      <img src="" width="16" height="16" id="place-icon" />
-      <span id="place-name" class="title"></span><br />
-      <span id="place-address"></span>
-    </div>
-    </div>
+          <h5 id="h5-create">Detalles del evento</h5>
+            <div class="text-left">
+
+              <form {{#if event}} action="/edit/{{event._id}}" {{else}} action="/event" {{/if}} method="POST">
+              <div id="form-detail">
+                <div class="form-group">
+                  <label for="title">Nombre del evento</label>
+                  <input type="text" maxlength="45" class="form-control" id="title" name="title" onkeyup="nameWhassap()" onchange="nameWhassap()" {{#if event.title}} value="{{event.title}}" {{/if}} required>
+                </div>
+              <div class="form-group">
+                  <label for="date">Fecha del evento</label>
+                  <input type="datetime-local" class="form-control" min="{{dateNow}}" id="date" name="date" onkeyup="dateWhassap()" onchange="dateWhassap()" {{#if dateEvent}} value="{{dateEvent}}" {{/if}} required>
+                </div>
+                <div class="form-group">
+                  <label for="duration">Duración</label>
+                  <input type="number" value="1" class="form-control" {{#if event.duration}} value="{{event.duration}}" {{/if}} onkeyup="durationWhassap()" onchange="durationWhassap()" id="duration" min="1" name="duration" required>
+                </div>
+                <div class="form-group">
+                  <label for="description">Descripción</label>
+                  <textarea class="form-control" id="description" onclick="descriptionWhassap()" onchange="descriptionWhassap()" onblur="descriptionWhassap()" name="description"  required>{{#if event.description}} {{event.description}} {{/if}}</textarea>
+                </div>
+                <div class="text-center">
+                    <button type="button" disabled class="btn btn-create" onclick="continueMap()" id="button-continue-create">
+                      Continuar
+                    </button>
+                  </div>
+                </div>
+    
+              <div id="form-map" class="none">
+
+                  <div id="form-map" class="form-map form-group">
+            
+                          <label for="pac-input">Introduce la localización</label>
+                          <input id="pac-input" {{#if event.location.name}} value="{{event.location.name}}" {{/if}} onkeyup="directionWhassap()" onchange="directionWhassap()" class="form-control mb-2" name="location" type="text" placeholder=" " />
+                
+                    <div class="pac-location">
+                      <input type="hidden" name="latitude" id="latitude" {{#if event.location}} value="{{event.location.coordinates.[0]}}" {{/if}}>
+                      <input type="hidden" name="longitud" id="longitud" {{#if event.location}} value="{{event.location.coordinates.[1]}}" {{/if}}>
+                    </div>
+                  
+                    <div id="map" name="map" ></div>
+                    <div class="pac-card" id="pac-card">
+                      <div id="infowindow-content">
+                      <img src="" width="16" height="16" id="place-icon" />
+                      <span id="place-name" class="title"></span><br />
+                      <span id="place-address"></span>
+                    </div>
+                    </div>
+                    
+                  </div>
+                  <div class="text-center">
+                    {{#if event}}
+                      <button type="submit" class="btn btn-create" id="button-continue-create">
+                        Modificar evento
+                      </button>
+                    {{else}}
+                      <button type="submit" class="btn btn-create" id="button-continue-create">
+                        Crear Evento
+                      </button>
+                    {{/if}}
+                  </div>    
+              </div>
+                   
+
+                
+               
+              </form>
+
+            </div>
+           </div>
   
-  <button type="submit" class="btn btn-primary w-100">
-    Crear evento
-  </button>
-</form>
+    <div class="p0 col-md-8">
+      
+            <div class="img-iphone background-gray">
+                <div id="iphone">
+                  <div id="background-whassap">
+                    <div id="chat-whassap">
+                      <div id="icons-whassap">🍺🔊🎉⚽🍻🎁🎊🥃🥁🍾🍰</div>
+                      <br>
+                      <div id="title-whassap"></div>
+                      <br>
+                      <div class="monospace" id="description-whassap"></div>
+                      <br>
+                      <div><a href="#"><b>Apuntate aquí</b></a></div>
+                      <br>
+                      <div><b>Día: </b><span id="day-whassap"></span></div>
+                      <div><b>Hora: </b><span id="hour-whassap"></span></div>
+                      <div><b>Lugar: </b><span id="direction-whassap"></span></div>
+                      <a href="">Ver ubicación</a>
+                      <br><br>
+                      <div><b>Duración: </b><span id="duration-whassap">1 hora</span></div>
+                      <br>
+                      <div><i>Asistentes</i></div>
+                      <br>
+                      <ol class="monospace">
+                        <li>Aitor</li>
+                        <li>Rodrigo</li>
+                        <li>Moi</li>
+                        <li>Carol</li>
+                      </ol>
+                      
+                      <div><i>Creado por kiui</i></div>
+
+                    </div>
+                  </div>
+                </div>
+
+           </div>
+ 
+    </div>
+ 
+      </div>
+</div>
+
+
+
+
+
+
+<script>
+  function nameWhassap() {
+    buttonActive()
+    const name = document.getElementById('title').value
+    const titleWhassap = document.getElementById('title-whassap')
+    titleWhassap.innerText = name
+    
+  }
+
+  function descriptionWhassap() {
+    buttonActive()
+    const description = document.getElementById('description').value
+    const descriptionWhasap = document.getElementById('description-whassap')
+    descriptionWhasap.innerText = description
+    
+  }
+
+  function durationWhassap() {
+    buttonActive()
+    const duration = document.getElementById('duration').value
+    const durationWhassap = document.getElementById('duration-whassap')
+    duration === '1' ? durationWhassap.innerText = `${duration} hora` : durationWhassap.innerText = `${duration} horas`
+  }
+
+  function dateWhassap() {
+    buttonActive()
+    const date = document.getElementById('date').value
+    const hourWhassap = document.getElementById('hour-whassap')
+    const dayWhassap = document.getElementById('day-whassap')
+    const year = date.slice(0, 4)
+    const hour = date.slice(11, 16)
+    const day = date.slice(08, 10)
+    const month = date.slice(05, 07)
+    const mNames = monthName(month)
+
+    hourWhassap.innerText = hour
+    dayWhassap.innerText = `${day} de ${mNames} de ${year}`
+
+    
+  }
+
+  
+
+  function buttonActive() {
+    const description = document.getElementById('description').value
+    const name = document.getElementById('title').value
+    const duration = document.getElementById('duration').value
+    const date = document.getElementById('date').value
+    const button = document.getElementById('button-continue-create')
+
+    if (description.length !== 0 && name.length !== 0 && duration.length !== 0 && date.length !== 0) {
+        button.disabled = false;
+
+    }
+
+  }
+
+  function continueMap() {
+    document.getElementById('form-detail').classList.add('none')
+    document.getElementById('form-map').classList.remove('none')
+  }
+
+  function directionWhassap() {
+    const directionWhassap = document.getElementById('direction-whassap')
+    const direction = document.getElementById('pac-input').value
+
+    directionWhassap.innerText = direction
+  }
+
+
+
+function monthName (month) {
+  let name = ""
+  switch (month) {
+    case "01" : name = "ENE";
+      break;
+    case "02" : name = "FEB";
+      break;
+    case "03" : name = "MAR";
+      break;
+    case "04" : name = "ABR";
+      break;
+    case "05" : name = "MAY";
+      break;
+    case "06" : name = "JUN";
+      break;
+    case "07" : name = "JUL";
+      break;
+    case "08" : name = "AGO";
+      break;
+    case "09" : name = "SEP";
+      break;
+    case "10" : name = "OCT";
+      break;
+    case "11" : name = "NOV";
+      break;
+    case "12" : name = "DIC";
+      break;
+  }
+    return name
+}
+
+
+</script>
+{{#if event}}
+<script>
+ 
+  nameWhassap()
+  descriptionWhassap()
+  durationWhassap()
+  dateWhassap()
+  directionWhassap()
+
+</script>
+
+{{/if}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
