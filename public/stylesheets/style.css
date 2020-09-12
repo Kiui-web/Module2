@@ -250,7 +250,7 @@ ol > li:before {
   }
 
   .logo-nav {
-    width: 7em;
+    width: 4em;
   }
   /* Index */
 
@@ -1074,4 +1074,65 @@ ol > li:before {
 .icon-size
 {
     font-size: 87px;
+}
+
+#navbarUser {
+  padding-left: 0px;
+  list-style-type: none;
+}
+
+
+.btn-Update-Profile {
+  padding: 1px 7px;
+  box-shadow: 1px 1px 5px lightgray;
+  background-color: #34B7F1
+}
+
+.btn-Logout {
+  padding: 1px 7px;
+  box-shadow: 1px 1px 5px lightgray;
+  background-color: lightgray
+}
+
+.btn-whatsapp-Profile {
+  margin: 10px;
+  background-color: #00bb2d;
+  border-radius: 50px;
+  color: white;
+}
+
+.btn-whatsapp-Profile:hover {
+  background-color: #01821f;
+  color: white;
+}
+
+.guardar:focus {
+  outline: none
+}
+
+.guardar {
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #D50000
+}
+
+.guardar:hover {
+  background-color: #D32F2F !important
+}
+
+.collapse {
+  justify-content: flex-end;
+}
+
+.dropdown-menu {
+  width: 50%;
+  position: absolute !important;
+}
+
+.flex-nav {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
 }
