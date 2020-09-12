@@ -264,6 +264,7 @@ module.exports.editEvent = (req, res, next) => {
 
 module.exports.modifyEvent = (req, res, next) => {
   const idEvent = req.params.id
+
   const body = req.body
 
   Event.findById(idEvent)
