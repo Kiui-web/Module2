@@ -81,8 +81,9 @@ module.exports.addName = (req, res, next) => {
             
         })
         .catch(next)
-
-
-
 }
 
+
+module.exports.upDateProfile = (req, res, next) => {
+    console.log(req.body);
+}

@@ -1252,3 +1252,17 @@ ol > li:before {
   justify-content: space-between;
   align-items: center;
 }
+
+#formPhoto {
+  margin: 0px;
+  padding: 0px;
+  border: none;
+}
+
+.bg-light {
+  background-color: transparent !important;
+}
+
+.dropdown-item {
+  padding-bottom: 0.5rem;
+}

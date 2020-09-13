@@ -11,6 +11,7 @@ router.get('/users', userController.createUser)
 router.post('/logout', sessionMiddleware.isAuthenticated, userController.logout);
 router.post('/user/addName', sessionMiddleware.isAuthenticated, userController.addName)
 
+
 router.get('/event/:id', eventController.detailEvent)
 router.get('/events', sessionMiddleware.isAuthenticated, eventController.eventsAll)
 router.get('/createEvent',eventController.createEvent)
@@ -23,6 +24,8 @@ router.get('/repeat/:id', sessionMiddleware.isAuthenticated, eventController.rep
 
 router.post('/assistant/add',eventController.add)
 router.post('/assistant/delete',eventController.delete)
+
+
 
 
 
