@@ -55,9 +55,16 @@
                   </div>
                   <div class="text-center">
                     {{#if event}}
+                      {{#if modify}}
+                        <button type="submit" class="btn btn-create" id="button-continue-create">
+                        Crear Evento
+                      </button>
+                      {{else}}
                       <button type="submit" class="btn btn-create" id="button-continue-create">
                         Modificar evento
                       </button>
+                      {{/if}}
+
                     {{else}}
                       <button type="submit" class="btn btn-create" id="button-continue-create">
                         Crear Evento
@@ -117,6 +124,23 @@
       </div>
 </div>
 
+{{#if event}}
+<script>
+    
+  const coordinates = {
+    "lat" : {{{event.location.coordinates.[0]}}},
+    "lng" : {{{event.location.coordinates.[1]}}}
+  }
+
+
+
+  window.points = coordinates;
+
+  
+  
+</script>
+{{/if}}
+
 
 
 
@@ -174,7 +198,8 @@
 
     if (description.length !== 0 && name.length !== 0 && duration.length !== 0 && date.length !== 0) {
         button.disabled = false;
-
+    } else {
+      button.disabled = true;
     }
 
   }

@@ -1,12 +1,23 @@
-
-
-
-
 <div class="background-gray">
 <div class="container">
 <h3 class="title-events">Tus proximos eventos</h3>
         <div id="events" class="event-list ">
            <div class="row">
+                 <div class="col-md-4">
+                     <a href="/createEvent" id="a-createEvent">
+                        <div class="owl-item cloned">
+                            <div class="event-item" id="event-item-add">
+                                <div id="add-event">
+                                <i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i>
+                                </div>
+                                </div>
+                            </div>
+                    </a>
+                </div>
+            
+
+
+
                     {{!-- Comienzo bucle --}}
                     {{#each eventPresent}}
                 <div class="col-md-4">
@@ -83,10 +94,10 @@
                                     <span>{{this.hour}}</span>
                                 </div>
                             </div>
-                            <h5><a href="/event/{{this._id}}" class="event-title">{{this.title}}</a></h5>
+                            <h5>{{this.title}}</h5>
                             <p class="event-content-past">{{this.description}}</p>
                             <div class="btn-events">
-                                <a class="btn btn-recreate" href="">Repetir evento</a>
+                                <a class="btn btn-recreate" href="/repeat/{{this._id}}">Repetir evento</a>
                             </div>
                         </div>
                     </div>

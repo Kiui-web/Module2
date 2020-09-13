@@ -7,7 +7,6 @@ const User = require('../models/user.model');
 module.exports.detailEvent = (req, res, next) => {
   Event.findById(req.params.id)
   .populate('user')
-  .populate('assistants.creator')
   .then(eventDetail => {
     const latitud = eventDetail.location.coordinates[0]
     const longitud = eventDetail.location.coordinates[1]
@@ -154,7 +153,6 @@ module.exports.eventsAll = (req, res, next) => {
   
   Event.find({ "user" : req.session.userId})
       .populate('user')
-      .populate('assistant')
       .then(events => {
         if (events) {
          
@@ -198,14 +196,10 @@ module.exports.eventsAll = (req, res, next) => {
       .catch(next);
 }
 
-module.exports.joinEvent = (req, res, next) => {
-  console.log("Entrando en joinevent");
-  res.render('event/joinevent')
-}
+
 module.exports.deleteEvent = (req, res, next) => {
   const idEvent = req.params.id
 
-  console.log(idEvent);
     Event.findByIdAndDelete(idEvent)
       .then(event => {
         res.redirect('/events')
@@ -256,20 +250,43 @@ module.exports.editEvent = (req, res, next) => {
    .then(event => {
     const dateNow = new Date().toISOString().substr(0, 16);
     const dateEvent = event.date.toISOString().substr(0, 16);
-    console.log(event.description);
     res.render('event/createEvent', {dateNow, event, dateEvent})
+   })
+   .catch(next)
+}
+
+module.exports.repeatEvent = (req, res, next) => {
+  const idEvent = req.params.id
+  
+  Event.findById(idEvent)
+   .then(event => {
+    const dateNow = new Date().toISOString().substr(0, 16);
+   const modify = true;
+
+    res.render('event/createEvent', {dateNow, event, modify})
    })
    .catch(next)
 }
 
 module.exports.modifyEvent = (req, res, next) => {
   const idEvent = req.params.id
-  const body = req.body
+  const {title, date, duration, description, latitude, longitud, location} = req.body
+  const eventModify = {
+   "user": req.session.userId,
+   "title" : title,
+   "date" : date,
+   "duration": duration,
+   "description" : description,
+   "location": {
+     "coordinates": [latitude, longitud],
+     "name": location
+   }
+  }
 
   Event.findById(idEvent)
     .then(event => {
 
-      event.set(body)
+      event.set(eventModify)
       event.save()
        .then(event => {
             res.redirect(`/event/${event._id}`)

@@ -85,7 +85,6 @@ ol > li:before {
   background-color:#EEE;
   padding-bottom: 1.5em;
   margin-bottom: -1em;
-  height: 97vh;
 }
 
 
@@ -237,7 +236,8 @@ ol > li:before {
 
   footer {
     position: relative;
-    bottom: 1em;
+    margin-top: 10px;
+    bottom: 5px;
     right: 0;
     left: 0;
     font-size: 1rem;
@@ -326,7 +326,7 @@ ol > li:before {
     font-size: 3rem;
     font-weight: bold;
     margin: 1em auto;
-    height: 16vh;
+    height: 30vh;
   }
   .width-index {
     width: 60%;
@@ -501,6 +501,13 @@ ol > li:before {
   font-size: .9em;
 }
 
+.btn-events {
+  display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 44px;
+}
+
 .btn-events .btn-whatsapp, .btn-events .btn-delete {
   padding: 1px 7px;
   box-shadow: 1px 1px 5px lightgray;
@@ -509,7 +516,7 @@ ol > li:before {
 
 .event-list .event-item {
   padding: 1rem 1.9rem;
-  height: 95%;
+  height: 17em;
   margin: 0 0.9375rem 1.875rem 0.9375rem;
   background-color: #ffffff;
   border-radius: 8px;
@@ -778,6 +785,27 @@ ol > li:before {
     }
 
 /* Modal events */
+    .event-item #add-event {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      color: gray;
+      font-size: 3em;
+    }
+
+    .owl-item #event-item-add {
+      padding: 0;
+    }
+
+    #a-createEvent {
+      text-decoration:none;
+    }
+
+    .event-item #add-event:hover {
+      color: rgb(80, 78, 78);
+    }
+
     #name-user {
       padding: 10px 24px;
       border: .5px solid lightgray;
@@ -964,7 +992,7 @@ ol > li:before {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 60vh;
+    height: 75vh;
     margin-bottom: 1.5em;
   }
   .btn-assistant {
@@ -1072,7 +1100,7 @@ ol > li:before {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 50vh;
+    height: 73vh;
     margin-bottom: 1.5em;
   }
 
