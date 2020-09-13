@@ -77,10 +77,6 @@ ol > li:before {
   border:0;
 }
 
-#max-width-event-detail {
-  width: 150%;
-}
-
 .background-gray {
   background-color:#EEE;
   padding-bottom: 1.5em;

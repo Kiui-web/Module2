@@ -24,11 +24,11 @@
                 </h1>
                 <p class="d-index">Gestionar eventos nunca ha sido tan fácil.</p>
                     <a href="/createEvent" class="btn btn-create">Crear evento</a><br>
-                    {{!-- {{#if currentUser }} --}}
-                    <a href="/login" class="btn btn-login mt-3">Iniciar sesión</a>
-                    {{!-- {{else}}
+                    {{#if userMenu }}
                     <a href="/events" class="btn btn-login mt-3">Mis eventos</a>
-                    {{/if}} --}}
+                    {{else}}
+                    <a href="/login" class="btn btn-login mt-3">Iniciar sesión</a>
+                    {{/if}}
            </div>
      </div>
     </div>
