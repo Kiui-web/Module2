@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 
 const MongoStore = connectMongo(expressSession)
 
+const oneMonth = 30 * 24 * 3600 * 1000;
+
 const session = expressSession({
   secret: process.env.SESSION_SECRET || "super secret (change it)",
   //NO guarda la sesión si no se ha inicializado. Puede que en nuestro caso tenga que ser True, para poder guardar sesión y así usar las Cookies
@@ -11,7 +13,8 @@ const session = expressSession({
   cookie: {
     secure: process.env.SESSION_SECURE || false,
     httpOnly: true,
-    maxAge: process.env.SESSION_MAX_AGE || 3600000, //milisegundos
+    //maxAge: process.env.SESSION_MAX_AGE || 3600000, //milisegundos
+    expires: new Date(Date.now() + oneMonth)
   },
   //Esto es para guardar la sesión en nuestra base de datos como req.session como un objeto
   store: new MongoStore({
