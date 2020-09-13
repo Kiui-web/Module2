@@ -43,7 +43,6 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
   res.locals.GOOGLE_MAPS_API = process.env.GOOGLE_MAPS_API
-  res.locals.HOST  = process.env.HOST
   next();
 })
 
