@@ -30,9 +30,6 @@ module.exports.createUser = (req, res, next) => {
 
             if (user !== null) {
                 req.session.userId = user._id
-                res.locals.currentUser = user
-                req.currentUser = user
-                console.log(res.locals.currentUser);
                 updateId(req, res)
             } else {
                 const user = new User ({
@@ -42,9 +39,6 @@ module.exports.createUser = (req, res, next) => {
                 user.save()
                     .then(user => {
                         req.session.userId = user._id
-                        req.currentUser = user
-                        res.locals.currentUser = user
-                        console.log(res.locals.currentUser);
                         updateId(req, res)
                     })
                     .catch(next)
