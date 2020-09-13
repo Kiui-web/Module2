@@ -7,7 +7,7 @@ function addAssistant(e, user) {
 	const numberAssistant = document.getElementById('number-assistant')
 	
 	if (name !== "") {
-		axios.post(`http://localhost:3000/assistant/add`,{idEvent, name})
+		axios.post(`${res.locals.HOST}/assistant/add`,{idEvent, name})
 			.then(res => {
 				document.getElementById('name-assistant').value = ''
 				const arrAssistants = res.data.assistants;
@@ -34,7 +34,7 @@ function deleteAssistant(e, number, idEvent) {
 	const ol = document.getElementById('assistant-event')
 	const numberAssistant = document.getElementById('number-assistant')
 
-	axios.post(`http://localhost:3000/assistant/delete`, {idEvent, number})
+	axios.post(`${res.locals.HOST}/assistant/delete`, {idEvent, number})
 			.then(res => {
 				const arrAssistants = res.data.assistants
 				deleteChildNodes (ol)
@@ -119,7 +119,7 @@ function saveNameUser (e) {
 	const nameUser = firstLetterUpperCase(nameUserBad)
 
 	if (nameUser !== "") {
-		axios.post(`http://localhost:3000/user/addName`, {idUser, nameUser})
+		axios.post(`${res.locals.HOST}/user/addName`, {idUser, nameUser})
 		.then(res => {
 			errorName.innerText = ''
 			console.log(res.data.name);
