@@ -11,6 +11,7 @@ router.get('/users',  userController.createUser)
 router.get('/profile', userController.profile);
 router.post('/logout', userController.logout);
 router.post('/user/addName', userController.addName)
+router.post('/update/:id', userController.upDateProfile)
 
 router.get('/event/:id', eventController.detailEvent)
 router.get('/events', eventController.eventsAll)
@@ -24,6 +25,8 @@ router.post('/edit/:id', eventController.modifyEvent)
 
 router.post('/assistant/add', eventController.add)
 router.post('/assistant/delete', eventController.delete)
+
+
 
 
 
