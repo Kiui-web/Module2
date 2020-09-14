@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Event = require('../models/event.model')
 const passport = require('passport')
-const shortUrl = require('node-url-shortener');
+const TinyURL = require('tinyurl');
 const User = require('../models/user.model');
 
 module.exports.detailEvent = (req, res, next) => {
@@ -16,10 +16,7 @@ module.exports.detailEvent = (req, res, next) => {
     const mNames = monthName(month)
     let googleMaps = `https://maps.google.com/?q=${latitud},${longitud}&z=17&t=m`
 
-        shortUrl.short(googleMaps, function(err, url){
-          googleMaps = url
-        });
-
+      
       
       const event = {
         "_id": eventDetail._id,
@@ -92,56 +89,31 @@ module.exports.share = (req, res, next) => {
         const longitud = event.location.coordinates[1]
         const direction = event.location.name
         let googleMaps = `https://maps.google.com/?q=${latitud},${longitud}&z=17&t=m`
-        let googleMapsNew = ""
         let assistant = ""
 
-        const urlAssistant = `http://localhost:3000/event/${event._id}`
+        const urlAssistantEvent = `https://kiui.herokuapp.com/event/${event._id}`
+
 
         for (let i = 1; i <= event.assistants.length; i++) {
-          //assistant += `*${i}.* ${event.assistants[i - 1]}\n`
           assistant += '*' + i + '.* ```' + event.assistants[i - 1] + '```\n'
         }
 
-        console.log(event.user.number);
-        shortUrl.short(googleMaps, function(err, url){
-          googleMapsNew = url
-        
-// const text = `
-// 🍺🔊🎉⚽🍻🎁🎊🥃🥁🍾🍰
+          TinyURL.shorten(googleMaps, function(url, err) {
+            googleMaps = url
 
-
-// *${title}*
-
-// ${description}
-
-// *Apuntate aquí*: ${urlAssistant}
-          
-// *Día:* ${day} de ${mNames} de ${year}
-// *Hora:* ${day}
-// *Lugar:* ${direction}
-// ${url}
-
-// *Duración:* ${duration} horas
-
-// Asistentes:
-// ${assistant}
-        
-//   Creado por kiui
-//         `
-const text = '🍺🔊🎉⚽🍻🎁🎊🥃🥁🍾🍰\n\n*' + title + '*\n\n```' + description + '```\n\n*Apuntate aquí:* ' +
+            TinyURL.shorten(urlAssistantEvent, function(urlAssistant, err) {
+             
+            const text = '🍺🔊🎉⚽🍻🎁🎊🥃🥁🍾🍰\n\n*' + title + '*\n\n```' + description + '```\n\n*Apuntate aquí:* ' +
             urlAssistant + '\n\n*Día:* ' + day + ' de ' + mNames + ' de ' + year + '\n*Hora:* ' + hour +
-            '\n*Lugar:* ' + direction + '\n' + url + '\n\n*Duración:* ' + duration + ' horas\n\n_Asistentes:_\n\n' +
-            assistant + '\n_Creado por kiui_';
+              '\n*Lugar:* ' + direction + '\n' + url + '\n\n*Duración:* ' + duration + ' horas\n\n_Asistentes:_\n\n' +
+              assistant + '\n_Creado por kiui_';
             
-            
-
-console.log(text);
-
             const textFormat = encodeURIComponent(text)
             const whasapUrl = `https://wa.me/?text=${textFormat}`
 
-            console.log(url);
             res.redirect(whasapUrl)
+          })
+          
 
         })
       })

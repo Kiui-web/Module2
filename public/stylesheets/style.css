@@ -176,6 +176,14 @@ ol > li:before {
   color: white;
 }
 
+.nav-item .btn-nav {
+  padding: 17px 30px !important;
+  border-radius: 50%;
+}
+.nav-item .btn-nav:hover {
+  background-color: #eee;
+}
+
 .btn-assistant:hover {
   background-color: rgb(169, 167, 167);
 }
@@ -183,6 +191,7 @@ ol > li:before {
 .button-event {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   margin-right: 4em;
 }
 
@@ -499,7 +508,7 @@ ol > li:before {
 }
 
 .btn-events {
-  display: flex;
+     display: flex;
     align-items: center;
     position: absolute;
     bottom: 44px;
@@ -1043,6 +1052,13 @@ ol > li:before {
 
 
 @media (max-width: 668px ){
+
+  .button-event {
+
+    margin-right: 0em;
+    margin-bottom: 10px;
+  }
+  
   #cloud:after {
     width: 100px; height: 100px;
     top: -50px; left: 50px;
@@ -1095,6 +1111,7 @@ ol > li:before {
     justify-content: center;
     align-items: center;
     margin-bottom: 1.5em;
+    height: 80vh;
   }
 
   .btn-create {
@@ -1124,7 +1141,8 @@ ol > li:before {
   }
 
   #name-assistant {
-    padding-left: 8px;
+  padding: 10px;
+  margin-bottom: 15px;
   }
   
   
