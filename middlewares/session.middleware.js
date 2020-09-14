@@ -18,8 +18,11 @@ module.exports.isNotAuthenticated = (req, res, next) => {
   User.findById(req.session.userId)
     .then((user) => {
       if (user) {
-        res.redirect("/login");
+        req.currentUser = user
+        res.locals.currentUser = user
+        next()
       } else {
+        res.locals.currentUserNotRegister = true
         next();
       }
     })

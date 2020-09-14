@@ -109,6 +109,8 @@
 
 
 {{#if user.name}}
+
+
 {{else}}
 <div class="modal fade" id="nameUser" data-keyboard='false' data-backdrop='static' tabindex="-1" role="dialog" aria-labelledby="nameUserLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -119,7 +121,7 @@
       <div class="modal-body">
           <input type="text" placeholder="Introduce tu nombre" id="name-user" name="name-user">
           <div id="errorName"></div>
-          <button type="button" id="{{user._id}}" onclick="saveNameUser(event)" class="btn btn-name">Guardar cambios</button>
+          <button type="button" id="{{user._id}}" onclick="saveNameUser(event)" class="btn btn-assistant">Guardar cambios</button>
       </div>
     </div>
     </div>

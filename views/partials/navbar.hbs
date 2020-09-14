@@ -6,10 +6,7 @@
         <img src="/images/Logo_Morado.png" alt="kiui-logo" class="logo-nav">
       </a>
 
-      {{!-- <button class="navbar-toggler" type="button" data-targt="#navbarNav" ria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" data-toggle="collapse">
-      <span class="fa fa-ellipsis-v"></span>
-    </button> --}}
-
+    
 
       <div id="navbarNav">
         <ul class="nav navbar-nav">
@@ -23,16 +20,19 @@
                 <div class="flex-column">
                   <div>
                     <a class="dropdown-item" href="/createEvent">Crear un evento</a>
-                    {{!-- {{#if currentUser }} --}}
+                    {{#if currentUser }}
                     <a class="dropdown-item" href="/events">Mis eventos</a>
-                    {{!-- {{/if}} --}}
+                    {{/if}}
                     <a class="dropdown-item" href="/">¿Cómo funciona?</a>
-                    {{!-- {{#if currentUser }} --}}
+                    {{#if currentUser }}
                     <a class="dropdown-item" href="#modalProfile" data-toggle="modal">Perfil</a>
                     <form action="/logout" method="post">
                       <button type="submit" class="dropdown-item">Cerrar sesión</button>
                     </form>
-                    {{!-- {{/if}} --}}
+                    {{/if}}
+                    {{#if currentUserNotRegister}}
+                    <a class="dropdown-item" href="/login" >Iniciar sesión</a>
+                    {{/if}}
                   </div>
                 </div>
               </ul>
@@ -56,12 +56,13 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
       </div>
       <div class="modal-body">
-        <form class="form" method="POST" action="/update/{{user._id}}">
+        <form class="form" method="POST" action="/update/{{user._id}}" enctype="multipart/form-data">
           <div class="card-body text-center">
             <div class="form-group" id="formPhoto">
-              <img src="{{user.avatar}}" alt="" style="width: 10rem;vertical-align:0px" id="perfil-img">
+              <img src="{{user.avatar}}" alt="image profile" style="width: 10rem;vertical-align:0px" id="perfil-img">
               <i class="fa fa-camera fa-2x" aria-hidden="true" id="selectLogo"></i>
-              <input class="form-group1">
+              <input type="hidden" id="url-file" name="urlFile" class="form-group1">
+              <input type="file" accept="image/*" name="file-image" id="file-image" class="none" value="{{user.avatar}}">
             </div>
             <div class="form-group bmd-form-group">
               <div class="input-group">
@@ -70,7 +71,7 @@
                     <i class="material-icons">Nombre</i>
                   </span>
                 </div>
-                <input type="text" class="form-control" value="{{user.name}}">
+                <input name="nameUser" id="nameUser" type="text" class="form-control" value="{{user.name}}">
               </div>
             </div>
             <div class="form-group bmd-form-group">
@@ -80,12 +81,12 @@
                     <i class="material-icons">Teléfono</i>
                   </span>
                 </div>
-                <input type="text" class="form-control" placeholder="{{user.number}}" readonly>
+                <input type="text" name="numberUser" class="form-control" value="{{user.number}}" readonly>
               </div>
             </div>
           </div>
           <div class="modal-footer justify-content-center">
-            <button type="submit" class="btn btn-primary btn-link btn-wd btn-lg guardar">Guardar cambios</button>
+            <button type="submit"  class="btn btn-primary btn-link btn-wd btn-lg guardar">Guardar cambios</button>
           </div>
         </form>
       </div>
@@ -98,11 +99,20 @@
 
 
 <script>
+  window.addEventListener('load', urlName)
+
+  function urlName() {
+    const urlfile = document.getElementById('url-file')
+   const location = new URL(window.location.href)
+   urlfile.value = location.pathname
+    
+  }
+
   $("#selectLogo").click(function () {
     // creating input on-the-fly
-    let input = document.createElement('input');
-    input.setAttribute('type', 'file');
-    input.setAttribute('accept', 'image/*');
+    const formPhoto = document.getElementById('formPhoto')
+    const input = document.getElementById('file-image')
+
     input.click();
     const img = document.getElementById('perfil-img');
     const value = input.value;

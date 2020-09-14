@@ -2,7 +2,8 @@
 
 <head>
    <meta charset="UTF-8">
-  <meta name="viewport" content="width=500, initial-scale=1">
+  {{!-- <meta name="viewport" content="width=500, initial-scale=1"> --}}
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
   <title>Kiui App - Organiza tus eventos</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
@@ -14,16 +15,20 @@
 </head>
 
 <body >
-   {{#if currentUser }}
 
+
+   {{#if currentUser }}
+          {{>navbar}}
+
+    {{/if}}
+    {{#if currentUserNotRegister}}
           {{>navbar}}
     {{/if}}
 
-
-  <div class="body">
+  
     {{{body}}}
 
-  </div>
+ 
 
   <footer class="text-center">2020 @Kiui App</footer>
 

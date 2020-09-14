@@ -93,5 +93,20 @@ module.exports.addName = (req, res, next) => {
 
 
 module.exports.upDateProfile = (req, res, next) => {
-    console.log(req.body);
+    const name = req.body.nameUser
+    const urlNow = req.body.urlFile
+    console.log(req.file);
+    let obj = ""
+    if (req.file === undefined) {
+         obj = {"name" : name}
+    } else {
+        const fileAvatar = req.file.path
+        obj = {"name" : name, "avatar" : fileAvatar}
+    }
+    
+    User.findByIdAndUpdate(req.params.id, { $set : obj})
+        .then (user => {
+            res.redirect(urlNow)
+        })
+        .catch(next)
 }
