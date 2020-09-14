@@ -1093,7 +1093,7 @@ ol > li:before {
     background: url(../images/morado-cielo.png) no-repeat center center;
     background-size: cover;
     padding: 1.4em 0 1.4em 3em;
-    height: 50vh;
+    height: 60vh;
     margin-left: -2em;
     color: white;
   }
