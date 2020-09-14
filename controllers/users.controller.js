@@ -75,7 +75,6 @@ module.exports.profile = (req, res, next) => {
 }
 
 module.exports.addName = (req, res, next) => {
-    console.log(req.body);
     const {idUser, nameUser} = req.body
 
     User.findByIdAndUpdate(idUser, { $set : { "name" : nameUser}})
@@ -93,9 +92,7 @@ module.exports.addName = (req, res, next) => {
 
 
 module.exports.upDateProfile = (req, res, next) => {
-    const name = req.body.nameUser
-    const urlNow = req.body.urlFile
-    console.log(req.file);
+    const name = req.body.name
     let obj = ""
     if (req.file === undefined) {
          obj = {"name" : name}
@@ -106,7 +103,7 @@ module.exports.upDateProfile = (req, res, next) => {
     
     User.findByIdAndUpdate(req.params.id, { $set : obj})
         .then (user => {
-            res.redirect(urlNow)
+            res.json(user)
         })
         .catch(next)
 }

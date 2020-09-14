@@ -7,7 +7,7 @@ function addAssistant(e, user) {
 	const numberAssistant = document.getElementById('number-assistant')
 	
 	if (name !== "") {
-		axios.post(`https://kiui.herokuapp.com/assistant/add`,{idEvent, name})
+		axios.post(`/assistant/add`,{idEvent, name})
 			.then(res => {
 				document.getElementById('name-assistant').value = ''
 				const arrAssistants = res.data.assistants;
@@ -34,7 +34,7 @@ function deleteAssistant(e, number, idEvent) {
 	const ol = document.getElementById('assistant-event')
 	const numberAssistant = document.getElementById('number-assistant')
 
-	axios.post(`https://kiui.herokuapp.com/assistant/delete`, {idEvent, number})
+	axios.post(`/assistant/delete`, {idEvent, number})
 			.then(res => {
 				const arrAssistants = res.data.assistants
 				deleteChildNodes (ol)
@@ -117,12 +117,13 @@ function saveNameUser (e) {
 	const divNameUser = document.getElementById('nameUser');
 	const errorName  = document.getElementById('errorName')
 	const nameUser = firstLetterUpperCase(nameUserBad)
+	const name = document.getElementById('nameUserProfile')
 	if (nameUser !== "") {
-		axios.post(`https://kiui.herokuapp.com/user/addName`, {idUser, nameUser})
+		axios.post(`/user/addName`, {idUser, nameUser})
 		.then(res => {
 			errorName.innerText = ''
-			console.log(res.data.name);
 			if (res.data.name !== "") {
+				name.value = res.data.name
 				$('#nameUser').modal('hide')
 				divNameUser.classList.add('none')
 			}
@@ -132,4 +133,24 @@ function saveNameUser (e) {
 		errorName.innerText = 'Debe introducir tu nombre para poder continuar.'
 
 	}
+}
+
+
+function saveProfile (e, idUser) {
+	const formData = new FormData();
+	const name = document.getElementById('nameUserProfile').value
+	const imagefile = document.getElementById('file-image');
+	if (imagefile.files.length !== 0) {
+		formData.append("file-image", imagefile.files[0]);
+	}
+	formData.append('name', name)
+	axios.post(`/update/${idUser}`, formData , {
+		headers: {
+		'Content-Type': 'multipart/form-data'
+		}
+	})
+	.then (res => {
+		$('#modalProfile').modal('hide')
+	})
+	.catch(console.error)
 }
