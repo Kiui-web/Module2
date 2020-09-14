@@ -955,7 +955,15 @@ ol > li:before {
     color: white;
   }
 
+@media (min-width: 767px) and (max-width: 992px) {
+  .event-item {
+    width: 14em;
+  }
+}
+
 @media (min-width: 667px) and (max-width: 992px) {
+
+ 
   .width-index {
     width: 50%;
   }
@@ -1053,6 +1061,9 @@ ol > li:before {
 
 @media (max-width: 668px ){
 
+  .background-gray {
+    height: auto;
+  }
   .button-event {
 
     margin-right: 0em;
