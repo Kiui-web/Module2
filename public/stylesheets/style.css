@@ -1111,7 +1111,7 @@ ol > li:before {
     justify-content: center;
     align-items: center;
     margin-bottom: 1.5em;
-    height: 80vh;
+    height: 95vh;
   }
 
   .btn-create {
@@ -1164,7 +1164,7 @@ ol > li:before {
     font-size: 3rem;
     font-weight: bold;
     margin: 1em auto;
-    height: 32vh;
+    height: 40vh;
   }
   .width-index {
     width: 100%;
