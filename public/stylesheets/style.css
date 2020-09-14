@@ -1066,7 +1066,7 @@ ol > li:before {
     background: url(../images/morado-cielo.png) no-repeat center center;
     background-size: cover;
     padding: 1.4em 0 1.4em 3em;
-    height: 39vh;
+    height: 50vh;
     margin-left: -2em;
     color: white;
   }
@@ -1094,7 +1094,6 @@ ol > li:before {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 73vh;
     margin-bottom: 1.5em;
   }
 
@@ -1105,7 +1104,7 @@ ol > li:before {
     color: white;
     font-size: 1.3rem;
     border-radius: 30px;
-    width: 22em;
+    width: 98%;
     font-weight: bold;
   }
   
@@ -1116,7 +1115,7 @@ ol > li:before {
     color:#912180;
     font-size: 1.3rem;
     border-radius: 30px;
-    width: 22em;
+    width: 98%;
     font-weight: bold;
   }
 
