@@ -16,7 +16,7 @@ router.post('/update/:id', sessionMiddleware.isAuthenticated, uploads.single('fi
 router.get('/event/:id', sessionMiddleware.isNotAuthenticated, eventController.detailEvent)
 router.get('/events', sessionMiddleware.isAuthenticated, eventController.eventsAll)
 router.get('/createEvent',sessionMiddleware.isNotAuthenticated, eventController.createEvent)
-router.post('/event',sessionMiddleware.isAuthenticated, eventController.saveEvent)
+router.post('/event', eventController.saveEvent)
 router.get('/share/:id',sessionMiddleware.isNotAuthenticated, eventController.share)
 router.get('/delete/:id', sessionMiddleware.isAuthenticated, eventController.deleteEvent)
 router.get('/edit/:id', sessionMiddleware.isAuthenticated, eventController.editEvent)
