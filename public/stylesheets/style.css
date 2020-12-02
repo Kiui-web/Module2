@@ -289,7 +289,8 @@ ol > li:before {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 96vh;
+    height: 100%;
+    
   }
 
   .btn-create {
@@ -336,6 +337,8 @@ ol > li:before {
   }
   .width-index {
     width: 60%;
+    display: flex;
+    flex-direction: column;
   }
 
  /* end Index */
@@ -973,11 +976,12 @@ ol > li:before {
   }
   .explain-index {
     background: url(../images/morado-cielo.png) no-repeat center center;
-    background-size: cover;
-    padding: 1.4em 0 1.4em 3em;
-    height: 39vh;
-    margin-left: -2em;
-    color: white;
+
+    padding: 0;
+    margin-left: -15px;
+    margin-right: -15px;
+    height: 100%;
+
   }
 
   .explain-index-text {
@@ -999,13 +1003,11 @@ ol > li:before {
   }
 
   .text-index {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 75vh;
+
     margin-bottom: 1.5em;
+    margin-top : 1.5em;
   }
+
   .btn-assistant {
 
     padding: 10px 10px;
@@ -1061,6 +1063,12 @@ ol > li:before {
 
 @media (max-width: 668px ){
 
+  .text-index {
+
+    margin-bottom: 1.5em;
+    margin-top : 1.5em;
+  }
+
   .background-gray {
     height: auto;
   }
@@ -1090,12 +1098,11 @@ ol > li:before {
     height: auto;
   }
   .explain-index {
-    background: url(../images/morado-cielo.png) no-repeat center center;
-    background-size: cover;
-    padding: 1.4em 0 1.4em 3em;
-    height: 60vh;
-    margin-left: -2em;
-    color: white;
+    padding: 0;
+    margin-left: -15px;
+    margin-right: -15px;
+    padding: 1em;
+    height: 100%;
   }
 
   .explain-index-text {
@@ -1116,14 +1123,7 @@ ol > li:before {
     order:2;
   }
 
-  .text-index {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1.5em;
-    height: 95vh;
-  }
+
 
   .btn-create {
     background-color: #912180;
@@ -1175,10 +1175,10 @@ ol > li:before {
     font-size: 3rem;
     font-weight: bold;
     margin: 1em auto;
-    height: 40vh;
   }
   .width-index {
     width: 100%;
+    
   }
 
 .login {
