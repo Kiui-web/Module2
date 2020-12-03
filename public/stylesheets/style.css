@@ -1052,10 +1052,8 @@ ol > li:before {
   }
    
   .title-index {
-    font-size: 3rem;
-    font-weight: bold;
-    margin: 1em auto;
-    height: 32vh;
+   
+    height: 55vh;
   
   }
 }
