@@ -20,7 +20,7 @@ const uiConfig = {
       const user = authResult.user;
       redirectUrl = `/users?number=${user.phoneNumber}`
 
-
+      console.log(window.location)
       window.location.href = redirectUrl
       return false;
     },
