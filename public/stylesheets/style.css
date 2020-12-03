@@ -1056,6 +1056,17 @@ ol > li:before {
     height: 55vh;
   
   }
+  .img-iphone {
+ display: none;
+  }
+  
+  
+  
+  .form-create {
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    height: 100%;
+  }
 }
 
 
