@@ -1,125 +1,139 @@
 <div class="container-fluid upper-event">
   <div class="container">
     <div class="col-md-12">
-        <div class="row">
-            <div class="calendar">
-              <div id="red-calendar"></div>
-              <div id="box-calendar">{{event.day}}</div>
-            </div>
+      <div class="row">
+        <div class="calendar">
+          <div id="red-calendar"></div>
+          <div id="box-calendar">{{event.day}}</div>
         </div>
-        <div class="row">
-          <div class="date-event">
-            {{event.day}} {{event.month}}, {{event.hour}} - Duración: {{event.duration}} Horas
-          </div>
+      </div>
+      <div class="row">
+        <div class="date-event">
+          {{event.day}} {{event.month}}, {{event.hour}} - Duración: {{event.duration}} Horas
         </div>
-        <div class="row">
-          <h2 id="title-event"><b>{{event.title}}</b></h2>
+      </div>
+      <div class="row">
+        <h2 id="title-event"><b>{{event.title}}</b></h2>
+      </div>
+      <div class="row">
+        <div id="direction-event">{{event.location.name}}</div>
+      </div>
+      <hr />
+      <div class="row" id="max-width-event-detail">
+        <input type="text" class="mr-2" name="name-assistant" id="name-assistant" placeholder="Introduce su nombre">
+        <div class="button-event">
+          <button class="btn btn-assistant" name="button-assistant" id="{{event._id}}" type="submit"
+            onclick="addAssistant(event, '{{user}}')"><i class="fa fa-check-circle-o mr-2"
+              aria-hidden="true"></i>Asistir</button>
+          {{#if_eq event.user._id user}}
+          <a href="/edit/{{event._id}}" class="btn btn-assistant" id="{{event._id}}" type="submit"><i
+              class="fa fa-pencil mr-2" aria-hidden="true"></i>Editar</a>
+          {{/if_eq}}
+          <a href="/share/{{event._id}}" class="btn btn-whatsapp"><i class="fa fa-whatsapp fa-2x"
+              aria-hidden="true"></i></a>
         </div>
-        <div class="row">
-          <div id="direction-event">{{event.location.name}}</div>
-        </div>
-        <hr/>
-        <div class="row" id="max-width-event-detail">
-            <input type="text" class="mr-2" name="name-assistant" id="name-assistant" placeholder="Introduce su nombre">
-            <div class="button-event">
-              <button class="btn btn-assistant" name="button-assistant" id="{{event._id}}" type="submit" onclick="addAssistant(event, '{{user}}')"><i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i>Asistir</button>
-              {{#if_eq event.user._id user}}
-              <a href="/edit/{{event._id}}" class="btn btn-assistant" id="{{event._id}}" type="submit"><i class="fa fa-pencil mr-2" aria-hidden="true"></i>Editar</a>
-              {{/if_eq}}
-              <a href="/share/{{event._id}}" class="btn btn-whatsapp"><i class="fa fa-whatsapp fa-2x" aria-hidden="true"></i></a>
-            </div>
-            {{#if_eq event.user._id user}}
-            <a href="#myModal" class="trigger-btn btn btn-assistant btn-delete" data-toggle="modal"><i class="fa fa-trash-o" aria-hidden="true"></i>
-            Eliminar evento</a>
-            {{/if_eq}}
-          </div>
-   
-    </div>
-    </div>
-</div>
-   
-<div class="background-gray">
-<div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="container-detail">
-      
-          <h3>Detalles</h3>
-        
-        <div><i class="fa fa-users mr-3" aria-hidden="true"></i><span id="number-assistant">{{event.assistants.length}}</span> personas asistirán al evento.</div>
-        
-        <div><i class="fa fa-calendar mr-3" aria-hidden="true"></i>{{event.day}} {{event.month}}, {{event.hour}}.</div>
-        
-        <div><i class="fa fa-clock-o mr-3" aria-hidden="true"></i>{{event.duration}} horas.</div>
-        
-        <div><i class="fa fa-map-marker mr-3" aria-hidden="true"></i>{{event.location.name}}</div>
-        <div>{{event.description}}</div>
+        {{#if_eq event.user._id user}}
+        <a href="#myModal" class="trigger-btn btn btn-assistant btn-delete" data-toggle="modal"><i class="fa fa-trash-o"
+            aria-hidden="true"></i>
+          Eliminar evento</a>
+        {{/if_eq}}
+      </div>
 
-      </div>
-      <div class="container-assistants" id="container-assistants">
-        <h3>Lista de asistentes</h3>
-        {{#ifEquals event.assistants.length 0}}
-          <p id="no-assistants">No tiene asistentes en este evento.</p>
-        {{/ifEquals}}
-        <ol id="assistant-event">
-          {{#each event.assistants}}
-            <li class="delete-assistant">
-              <div class="name-assistant-delete" > {{this}} </div>
-                 {{#if_eq ../event.user._id ../user}}
-          
-                  <button  class="btn-delete" type="submit" onclick="deleteAssistant(event, {{@index}}, '{{../event._id}}')" ><i class="fa fa-trash-o"></i></button>
-                
-                {{/if_eq}}
-            </li>
-          {{/each}}
-        </ol>
-      </div>
     </div>
-    <div class="col-md-5">
-      <div class="container-map">
-        <a href="{{event.googleMapsUrl}}">
-        <div id="map" name="map" ></div>
-        </a>
+  </div>
+</div>
+
+<div class="background-gray">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="container-detail">
+
+          <h3>Detalles</h3>
+
+          <div><i class="fa fa-users mr-3" aria-hidden="true"></i><span
+              id="number-assistant">{{event.assistants.length}}</span> personas asistirán al evento.</div>
+
+          <div><i class="fa fa-calendar mr-3" aria-hidden="true"></i>{{event.day}} {{event.month}}, {{event.hour}}.
+          </div>
+
+          <div><i class="fa fa-clock-o mr-3" aria-hidden="true"></i>{{event.duration}} horas.</div>
+
+          <div><i class="fa fa-map-marker mr-3" aria-hidden="true"></i>{{event.location.name}}</div>
+          <div>{{event.description}}</div>
+
+        </div>
+        <div class="container-assistants" id="container-assistants">
+          <h3>Lista de asistentes</h3>
+          {{#ifEquals event.assistants.length 0}}
+          <p id="no-assistants">No tiene asistentes en este evento.</p>
+          {{/ifEquals}}
+          <ol id="assistant-event">
+            {{#each event.assistants}}
+            <li class="delete-assistant">
+              <div class="name-assistant-delete"> {{this}} </div>
+              {{#if_eq ../event.user._id ../user}}
+
+              <button class="btn-delete" type="submit"
+                onclick="deleteAssistant(event, {{@index}}, '{{../event._id}}')"><i class="fa fa-trash-o"></i></button>
+
+              {{/if_eq}}
+            </li>
+            {{/each}}
+          </ol>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="container-map">
+          <a href="{{event.googleMapsUrl}}">
+            <div id="map" name="map"></div>
+          </a>
           <div>
             <p>{{event.location.name}}</p>
           </div>
         </div>
+      </div>
     </div>
-  </div>
   </div>
 </div>
 <div id="myModal" class="modal fade">
-	<div class="modal-dialog modal-confirm">
-		<div class="modal-content">
-			<div class="modal-header">
-				<div class="icon-box">
-					<i class="fa fa-times" aria-hidden="true"></i>
-				</div>				
-				<h4 class="modal-title">¿Esta seguro?</h4>	
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			</div>
-			<div class="modal-body">
-				<p>¿Realmente quiere borrar el evento? Este proceso no se puede deshacer.</p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
-				<a href="/delete/{{event._id}}" type="button" class="btn btn-danger">Borrar</a>
-			</div>
-		</div>
-	</div>
-</div>  
+  <div class="modal-dialog modal-confirm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="icon-box">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+        <h4 class="modal-title">¿Esta seguro?</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>¿Realmente quiere borrar el evento? Este proceso no se puede deshacer.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
+        <a href="/delete/{{event._id}}" type="button" class="btn btn-danger">Borrar</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
-    
+  let index = window.document.getElementsByTagName('script')[0];
+  let script = window.document.createElement('script');
+  script.src = 'https://maps.googleapis.com/maps/api/js?key={{GOOGLE_MAPS_API}}&callback=initMap&libraries=places&v=weekly';
+  script.async = true;
+  script.defer = true;
+  index.parentNode.insertBefore(script, index);
+
   const coordinates = {
-    "lat" : {{{event.location.coordinates.[0]}}},
-    "lng" : {{{event.location.coordinates.[1]}}}
+    "lat": {{{ event.location.coordinates.[0]}}},
+  "lng" : { { { event.location.coordinates.[1] } } }
   }
 
 
 
   window.points = coordinates;
 
-  
-  
+
+
 </script>

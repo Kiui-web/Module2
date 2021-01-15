@@ -147,6 +147,14 @@
 
 
 <script>
+
+  let index = window.document.getElementsByTagName('script')[0];
+	let script = window.document.createElement('script');
+	script.src = 'https://maps.googleapis.com/maps/api/js?key={{GOOGLE_MAPS_API}}&callback=initMap&libraries=places&v=weekly';
+	script.async = true;
+	script.defer = true;
+	index.parentNode.insertBefore(script, index);
+
   function nameWhassap() {
     buttonActive()
     const name = document.getElementById('title').value
